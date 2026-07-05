@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="id"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
 <title>Novia — Performance Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
@@ -57,7 +59,10 @@ th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-weight:50
     <div class="logo">N</div>
     <div><h1>Novia — Performance Dashboard</h1><div class="sub"><span class="live"></span>Akun: SVO Zainal Rauf (Novia)</div></div>
   </div>
-  <button class="tgl" id="tgl">☀︎ Mode Terang</button>
+  <div style="display:flex;gap:6px">
+    <button class="tgl" id="rld" title="Ambil versi terbaru (bypass cache)">🔄 Muat terbaru</button>
+    <button class="tgl" id="tgl">☀︎ Mode Terang</button>
+  </div>
 </header>
 
 <div class="banner">✅ <b>Data asli akun Novia</b> ditarik langsung dari Meta Ads API — funnel lengkap sampai Contact &amp; ROAS, semua attributed ke iklan. Tab Follow-up masih butuh catatan penjualan (belum tersambung).</div>
@@ -260,6 +265,7 @@ function renderOpt(){
 
 /* ---------- init ---------- */
 $('genat').textContent=DATA.generated_at; $('win').textContent=DATA.window;
+$('rld').addEventListener('click',()=>{location.href=location.pathname+'?t='+Date.now();});
 renderNow();
 let built={now:1};
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
