@@ -1,30 +1,30 @@
 {
- "generated_at": "05 Jul 2026 18:56",
+ "generated_at": "05 Jul 2026 19:07",
  "window": "06 Jun – 05 Jul 2026",
  "today": {
-  "spend": 1629381,
-  "impr": 41247,
-  "reach": 30891,
-  "clicks": 1397,
-  "ctr": 3.39,
-  "cpc": 1166,
-  "cpm": 39503,
+  "spend": 1645913,
+  "impr": 42247,
+  "reach": 31624,
+  "clicks": 1415,
+  "ctr": 3.35,
+  "cpc": 1163,
+  "cpm": 38959,
   "freq": 1.34,
-  "link": 868,
-  "viewlp": 595,
+  "link": 883,
+  "viewlp": 599,
   "klikwa": 47,
   "contact": 20,
   "purch": 1,
-  "roas": 0.61
+  "roas": 0.6
  },
  "yesterday": {
   "spend": 1334418,
-  "impr": 36200,
+  "impr": 36203,
   "reach": 28775,
   "clicks": 1725,
-  "ctr": 4.77,
+  "ctr": 4.76,
   "cpc": 774,
-  "cpm": 36862,
+  "cpm": 36859,
   "freq": 1.26,
   "link": 909,
   "viewlp": 623,
@@ -37,12 +37,12 @@
   {
    "name": "NOVIA | Sales | WK1 Learning | Jun26",
    "off": false,
-   "spend": 1051767,
-   "impr": 22901,
-   "clicks": 1081,
-   "ctr": 4.72,
-   "cpc": 973,
-   "link": 713,
+   "spend": 1057913,
+   "impr": 23039,
+   "clicks": 1085,
+   "ctr": 4.71,
+   "cpc": 975,
+   "link": 714,
    "viewlp": 473,
    "klikwa": 33,
    "contact": 15,
@@ -52,11 +52,11 @@
   {
    "name": "NOVIA | Sales | IMG-B2 Usia 40+ & Menopause | Jul26",
    "off": false,
-   "spend": 175641,
-   "impr": 3127,
+   "spend": 177248,
+   "impr": 3148,
    "clicks": 53,
-   "ctr": 1.69,
-   "cpc": 3314,
+   "ctr": 1.68,
+   "cpc": 3344,
    "link": 41,
    "viewlp": 34,
    "klikwa": 5,
@@ -67,11 +67,11 @@
   {
    "name": "NOVIA | Sales | IMG-B3 Trust & Premium | Jul26",
    "off": false,
-   "spend": 167742,
-   "impr": 5492,
+   "spend": 168441,
+   "impr": 5509,
    "clicks": 89,
    "ctr": 1.62,
-   "cpc": 1885,
+   "cpc": 1893,
    "link": 50,
    "viewlp": 41,
    "klikwa": 3,
@@ -82,28 +82,28 @@
   {
    "name": "NOVIA | Sales | IMG-B1 Hormon & Siklus | Jul26",
    "off": false,
-   "spend": 125743,
-   "impr": 3005,
-   "clicks": 46,
-   "ctr": 1.53,
-   "cpc": 2734,
-   "link": 20,
+   "spend": 127224,
+   "impr": 3040,
+   "clicks": 48,
+   "ctr": 1.58,
+   "cpc": 2650,
+   "link": 21,
    "viewlp": 17,
    "klikwa": 3,
    "contact": 1,
    "purch": 1,
-   "roas": 7.87
+   "roas": 7.78
   },
   {
    "name": "NOVIA | VID-B2 Putri - Safron | Jul26",
    "off": false,
-   "spend": 49049,
-   "impr": 4672,
-   "clicks": 70,
-   "ctr": 1.5,
-   "cpc": 701,
-   "link": 25,
-   "viewlp": 16,
+   "spend": 54292,
+   "impr": 5423,
+   "clicks": 80,
+   "ctr": 1.48,
+   "cpc": 679,
+   "link": 36,
+   "viewlp": 19,
    "klikwa": 2,
    "contact": 1,
    "purch": 0,
@@ -112,12 +112,12 @@
   {
    "name": "NOVIA | VID-B2 Wulan - Nyaman & PD | Jul26",
    "off": false,
-   "spend": 22023,
-   "impr": 1273,
-   "clicks": 45,
-   "ctr": 3.53,
-   "cpc": 489,
-   "link": 17,
+   "spend": 22105,
+   "impr": 1281,
+   "clicks": 46,
+   "ctr": 3.59,
+   "cpc": 481,
+   "link": 18,
    "viewlp": 13,
    "klikwa": 1,
    "contact": 0,
@@ -127,11 +127,11 @@
   {
    "name": "NOVIA | VID-B2 Maya - 3 Alasan | Jul26",
    "off": false,
-   "spend": 19715,
-   "impr": 353,
+   "spend": 20045,
+   "impr": 356,
    "clicks": 1,
    "ctr": 0.28,
-   "cpc": 19715,
+   "cpc": 20045,
    "link": 0,
    "viewlp": 0,
    "klikwa": 0,
@@ -142,11 +142,11 @@
   {
    "name": "NOVIA | VID-B2 Indah - Herbal Lambat | Jul26",
    "off": false,
-   "spend": 16481,
-   "impr": 409,
-   "clicks": 11,
-   "ctr": 2.69,
-   "cpc": 1498,
+   "spend": 17062,
+   "impr": 417,
+   "clicks": 12,
+   "ctr": 2.88,
+   "cpc": 1422,
    "link": 2,
    "viewlp": 1,
    "klikwa": 0,
@@ -157,13 +157,13 @@
   {
    "name": "NOVIA | VID-B2 Sari - Rekomendasi Kakak | Jul26",
    "off": false,
-   "spend": 1220,
-   "impr": 15,
+   "spend": 1583,
+   "impr": 34,
    "clicks": 1,
-   "ctr": 6.67,
-   "cpc": 1220,
-   "link": 0,
-   "viewlp": 0,
+   "ctr": 2.94,
+   "cpc": 1583,
+   "link": 1,
+   "viewlp": 1,
    "klikwa": 0,
    "contact": 0,
    "purch": 0,
@@ -254,7 +254,7 @@
  ],
  "funnel": {
   "spend": 8574022,
-  "impressions": 155005,
+  "impressions": 155008,
   "reach": 77238,
   "clicks": 23324,
   "link_clicks": 18118,
@@ -264,7 +264,7 @@
   "purchases": 3,
   "ctr": 15.05,
   "cpc": 368,
-  "cpm": 55314,
+  "cpm": 55313,
   "frequency": 2.01,
   "roas": 0.44
  },
@@ -272,201 +272,201 @@
   "age": [
    [
     "45-54",
-    14631
+    14931
    ],
    [
     "35-44",
-    12551
+    12834
    ],
    [
     "25-34",
-    5095
+    5235
    ],
    [
     "18-24",
-    4346
+    4416
    ],
    [
     "55-64",
-    3616
+    3767
    ],
    [
     "65+",
-    1008
+    1064
    ]
   ],
   "gender": [
    [
     "Perempuan",
-    33599
+    34120
    ],
    [
     "Laki-laki",
-    7498
+    7975
    ],
    [
     "Tidak diketahui",
-    150
+    152
    ]
   ],
   "placement": [
    [
     "Facebook",
-    1168335
+    1180957
    ],
    [
     "Instagram",
-    279096
+    283259
    ],
    [
     "Audience Network",
-    181941
+    181686
    ],
    [
     "Threads",
-    9
+    11
    ]
   ],
   "region": [
    [
     "Papua",
-    4986
+    5026
    ],
    [
     "Maluku Utara",
-    2493
+    2516
    ],
    [
     "NTT",
-    2272
+    2329
    ],
    [
     "Papua Barat",
-    2004
+    2019
    ],
    [
     "Maluku",
-    1971
+    2015
    ],
    [
     "Kalimantan Timur",
-    1894
+    1918
    ],
    [
     "Jawa Barat",
-    1814
+    1902
    ],
    [
     "Sulawesi Selatan",
-    1766
+    1806
    ],
    [
     "Sumatera Utara",
-    1655
+    1690
    ],
    [
     "Kalimantan Barat",
-    1497
+    1529
    ],
    [
     "Sulawesi Utara",
-    1483
+    1523
    ],
    [
     "Sulawesi Tengah",
-    1474
+    1502
    ],
    [
     "Jawa Timur",
-    1386
+    1448
    ],
    [
     "Jawa Tengah",
-    1333
+    1408
    ],
    [
     "Kalimantan Tengah",
-    1296
+    1334
    ],
    [
     "NTB",
-    1289
+    1333
    ],
    [
     "Bali",
-    1207
+    1233
    ],
    [
     "Sulawesi Tenggara",
-    1050
-   ],
-   [
-    "Jakarta",
-    1022
+    1067
    ],
    [
     "Riau",
-    1011
+    1043
+   ],
+   [
+    "Jakarta",
+    1038
    ],
    [
     "Sumatera Selatan",
-    704
+    733
    ],
    [
     "Sulawesi Barat",
-    581
+    597
    ],
    [
     "Riau Islands Province",
-    567
-   ],
-   [
-    "Jambi",
-    546
+    581
    ],
    [
     "Sumatera Barat",
-    546
+    570
+   ],
+   [
+    "Jambi",
+    568
    ],
    [
     "Kalimantan Selatan",
-    516
+    528
    ],
    [
     "Gorontalo",
-    492
+    503
    ],
    [
     "Banten",
-    459
+    477
    ],
    [
     "Aceh",
-    457
+    464
    ],
    [
     "Lampung",
-    425
+    454
    ],
    [
     "Kalimantan Utara",
-    397
+    404
    ],
    [
     "DI Yogyakarta",
-    225
+    235
    ],
    [
     "Bengkulu",
-    218
+    231
    ],
    [
     "Bangka–Belitung Islands",
-    207
+    218
    ],
    [
     "Unknown",
-    4
+    5
    ]
   ]
  },
@@ -474,11 +474,11 @@
   "age": [
    [
     "45-54",
-    47811
+    47812
    ],
    [
     "35-44",
-    39409
+    39410
    ],
    [
     "25-34",
@@ -490,7 +490,7 @@
    ],
    [
     "18-24",
-    18878
+    18879
    ],
    [
     "65+",
@@ -500,7 +500,7 @@
   "gender": [
    [
     "Perempuan",
-    127634
+    127637
    ],
    [
     "Laki-laki",
@@ -532,7 +532,7 @@
   "region": [
    [
     "Papua",
-    13689
+    13690
    ],
    [
     "Jawa Barat",
@@ -544,11 +544,11 @@
    ],
    [
     "NTT",
-    8322
+    8321
    ],
    [
     "Sumatera Utara",
-    7893
+    7892
    ],
    [
     "Jakarta",
@@ -568,7 +568,7 @@
    ],
    [
     "Maluku",
-    5858
+    5859
    ],
    [
     "Kalimantan Timur",
@@ -576,7 +576,7 @@
    ],
    [
     "Papua Barat",
-    5699
+    5701
    ],
    [
     "Sulawesi Utara",
@@ -592,7 +592,7 @@
    ],
    [
     "Bali",
-    4227
+    4228
    ],
    [
     "Riau",
@@ -675,354 +675,354 @@
  "region_month": [
   {
    "prov": "Jakarta",
-   "spend": 938575,
+   "spend": 939220,
    "link": 2280
   },
   {
    "prov": "Jawa Barat",
-   "spend": 834829,
-   "link": 2445
+   "spend": 838461,
+   "link": 2447
   },
   {
    "prov": "Jawa Timur",
-   "spend": 652796,
-   "link": 2326
+   "spend": 653415,
+   "link": 2328
   },
   {
    "prov": "Papua",
-   "spend": 611957,
+   "spend": 612824,
    "link": 446
   },
   {
    "prov": "Sumatera Utara",
-   "spend": 406618,
+   "spend": 406784,
    "link": 1119
   },
   {
    "prov": "Jawa Tengah",
-   "spend": 383060,
-   "link": 1426
+   "spend": 383793,
+   "link": 1427
   },
   {
    "prov": "Sulawesi Selatan",
-   "spend": 301332,
+   "spend": 301659,
    "link": 737
   },
   {
    "prov": "Kalimantan Timur",
-   "spend": 297589,
+   "spend": 298070,
    "link": 603
   },
   {
    "prov": "Bali",
-   "spend": 291836,
+   "spend": 293018,
    "link": 427
   },
   {
    "prov": "NTT",
-   "spend": 261856,
+   "spend": 262501,
    "link": 245
   },
   {
    "prov": "Sulawesi Utara",
-   "spend": 245057,
+   "spend": 245316,
    "link": 339
   },
   {
    "prov": "Maluku",
-   "spend": 228747,
-   "link": 289
+   "spend": 229733,
+   "link": 290
   },
   {
    "prov": "Kalimantan Barat",
-   "spend": 224330,
+   "spend": 225077,
    "link": 366
   },
   {
    "prov": "Sulawesi Tengah",
-   "spend": 220831,
+   "spend": 221298,
    "link": 293
   },
   {
    "prov": "Maluku Utara",
-   "spend": 215872,
+   "spend": 216435,
    "link": 165
   },
   {
    "prov": "Banten",
-   "spend": 209043,
-   "link": 648
+   "spend": 209382,
+   "link": 649
   },
   {
    "prov": "Papua Barat",
-   "spend": 205912,
+   "spend": 206088,
    "link": 218
   },
   {
    "prov": "Sulawesi Tenggara",
-   "spend": 182361,
+   "spend": 182444,
    "link": 249
   },
   {
    "prov": "Kalimantan Tengah",
-   "spend": 170794,
+   "spend": 171266,
    "link": 228
   },
   {
    "prov": "NTB",
-   "spend": 154265,
+   "spend": 154686,
    "link": 232
   },
   {
    "prov": "Riau",
-   "spend": 127659,
-   "link": 290
+   "spend": 128118,
+   "link": 291
   },
   {
    "prov": "Gorontalo",
-   "spend": 123461,
+   "spend": 123490,
    "link": 192
   },
   {
    "prov": "Sumatera Selatan",
-   "spend": 118511,
-   "link": 307
+   "spend": 118749,
+   "link": 308
   },
   {
    "prov": "Kalimantan Selatan",
-   "spend": 117874,
+   "spend": 118027,
    "link": 201
   },
   {
    "prov": "Riau Islands Province",
-   "spend": 117765,
+   "spend": 117954,
    "link": 297
   },
   {
    "prov": "Sumatera Barat",
-   "spend": 105556,
+   "spend": 105892,
    "link": 268
   },
   {
    "prov": "Jambi",
-   "spend": 88790,
-   "link": 205
+   "spend": 89078,
+   "link": 206
   },
   {
    "prov": "Aceh",
-   "spend": 83163,
+   "spend": 83298,
    "link": 266
   },
   {
    "prov": "Lampung",
-   "spend": 75541,
+   "spend": 75847,
    "link": 228
   },
   {
    "prov": "DI Yogyakarta",
-   "spend": 66204,
+   "spend": 66357,
    "link": 221
   },
   {
    "prov": "Sulawesi Barat",
-   "spend": 62046,
+   "spend": 62194,
    "link": 116
   },
   {
    "prov": "Kalimantan Utara",
-   "spend": 43743,
+   "spend": 43871,
    "link": 50
   },
   {
    "prov": "Bengkulu",
-   "spend": 27292,
+   "spend": 27339,
    "link": 63
   },
   {
    "prov": "Bangka–Belitung Islands",
-   "spend": 25672,
+   "spend": 25779,
    "link": 44
   },
   {
    "prov": "Unknown",
-   "spend": 1922,
+   "spend": 1928,
    "link": 13
   }
  ],
  "region_today": [
   {
    "prov": "Papua",
-   "spend": 168844,
+   "spend": 169668,
    "link": 53
   },
   {
    "prov": "Jawa Barat",
-   "spend": 124713,
-   "link": 90
+   "spend": 128392,
+   "link": 92
   },
   {
    "prov": "Jakarta",
-   "spend": 91879,
+   "spend": 92598,
    "link": 76
   },
   {
    "prov": "Maluku Utara",
-   "spend": 84693,
+   "spend": 85221,
    "link": 25
   },
   {
    "prov": "Kalimantan Timur",
-   "spend": 77834,
+   "spend": 78297,
    "link": 34
   },
   {
    "prov": "Kalimantan Barat",
-   "spend": 75775,
+   "spend": 76498,
    "link": 40
   },
   {
    "prov": "Jawa Timur",
-   "spend": 71560,
-   "link": 62
+   "spend": 72224,
+   "link": 64
   },
   {
    "prov": "NTT",
-   "spend": 67616,
+   "spend": 68248,
    "link": 27
   },
   {
    "prov": "Maluku",
-   "spend": 62875,
-   "link": 20
+   "spend": 63849,
+   "link": 21
   },
   {
    "prov": "Papua Barat",
-   "spend": 60394,
+   "spend": 60551,
    "link": 25
   },
   {
    "prov": "Sulawesi Selatan",
-   "spend": 59428,
+   "spend": 59752,
    "link": 37
   },
   {
    "prov": "Bali",
-   "spend": 57407,
+   "spend": 58593,
    "link": 15
   },
   {
    "prov": "Sulawesi Tengah",
-   "spend": 57018,
+   "spend": 57474,
    "link": 25
   },
   {
    "prov": "Sumatera Utara",
-   "spend": 51179,
+   "spend": 51367,
    "link": 54
   },
   {
    "prov": "Kalimantan Tengah",
-   "spend": 47902,
+   "spend": 48363,
    "link": 15
   },
   {
    "prov": "Jawa Tengah",
-   "spend": 46254,
-   "link": 44
+   "spend": 47012,
+   "link": 45
   },
   {
    "prov": "Sulawesi Tenggara",
-   "spend": 45655,
+   "spend": 45728,
    "link": 13
   },
   {
    "prov": "Sulawesi Utara",
-   "spend": 43646,
+   "spend": 43907,
    "link": 24
   },
   {
    "prov": "Banten",
-   "spend": 41375,
-   "link": 12
+   "spend": 41715,
+   "link": 13
   },
   {
    "prov": "NTB",
-   "spend": 35745,
+   "spend": 36163,
    "link": 21
   },
   {
    "prov": "Kalimantan Selatan",
-   "spend": 31503,
+   "spend": 31648,
    "link": 16
   },
   {
    "prov": "Riau",
-   "spend": 29016,
-   "link": 15
+   "spend": 29473,
+   "link": 16
   },
   {
    "prov": "Sumatera Selatan",
-   "spend": 25313,
-   "link": 5
+   "spend": 25549,
+   "link": 6
   },
   {
    "prov": "Jambi",
-   "spend": 22982,
-   "link": 9
+   "spend": 23266,
+   "link": 10
   },
   {
    "prov": "Sulawesi Barat",
-   "spend": 21738,
+   "spend": 21879,
    "link": 6
   },
   {
    "prov": "Riau Islands Province",
-   "spend": 20771,
+   "spend": 20962,
    "link": 17
   },
   {
    "prov": "Lampung",
-   "spend": 20658,
+   "spend": 20960,
    "link": 9
   },
   {
    "prov": "Gorontalo",
-   "spend": 17271,
+   "spend": 17305,
    "link": 10
   },
   {
    "prov": "Sumatera Barat",
-   "spend": 16628,
+   "spend": 16968,
    "link": 19
   },
   {
    "prov": "Kalimantan Utara",
-   "spend": 15160,
+   "spend": 15283,
    "link": 3
   },
   {
    "prov": "Aceh",
-   "spend": 14747,
+   "spend": 14884,
    "link": 30
   },
   {
    "prov": "DI Yogyakarta",
-   "spend": 9124,
+   "spend": 9280,
    "link": 9
   },
   {
    "prov": "Bangka–Belitung Islands",
-   "spend": 6823,
+   "spend": 6929,
    "link": 4
   },
   {
    "prov": "Bengkulu",
-   "spend": 5834,
+   "spend": 5880,
    "link": 4
   },
   {
    "prov": "Unknown",
-   "spend": 21,
+   "spend": 27,
    "link": 0
   }
  ],
@@ -1030,17 +1030,17 @@
   {
    "nm": "WK1 | T05 Bu Yuli",
    "off": false,
-   "spend": 3173297,
-   "impr": 71406,
-   "ctr": 7.98,
-   "link": 3488,
+   "spend": 3179332,
+   "impr": 71546,
+   "ctr": 7.97,
+   "link": 3489,
    "viewlp": 2328,
    "klikwa": 83,
    "contact": 36,
    "purch": 1,
    "roas": 0.31,
    "hook": 31.8,
-   "hold": 49.1
+   "hold": 49.0
   },
   {
    "nm": "WK1 | T10 Citra (Off)",
@@ -1075,8 +1075,8 @@
   {
    "nm": "WK1 | T09 Lia",
    "off": false,
-   "spend": 384860,
-   "impr": 7858,
+   "spend": 384971,
+   "impr": 7859,
    "ctr": 5.94,
    "link": 452,
    "viewlp": 279,
@@ -1135,9 +1135,9 @@
   {
    "nm": "IMG09 - Bukan Hormon Sintetis (Off)",
    "off": true,
-   "spend": 125441,
-   "impr": 4490,
-   "ctr": 1.54,
+   "spend": 125981,
+   "impr": 4498,
+   "ctr": 1.53,
    "link": 41,
    "viewlp": 33,
    "klikwa": 2,
@@ -1150,9 +1150,9 @@
   {
    "nm": "IMG05 - Menopause Premium",
    "off": false,
-   "spend": 82626,
-   "impr": 1228,
-   "ctr": 1.63,
+   "spend": 82867,
+   "impr": 1234,
+   "ctr": 1.62,
    "link": 14,
    "viewlp": 12,
    "klikwa": 1,
@@ -1165,15 +1165,15 @@
   {
    "nm": "IMG02 - KB Emosi",
    "off": false,
-   "spend": 73254,
-   "impr": 1772,
-   "ctr": 1.92,
-   "link": 12,
+   "spend": 73973,
+   "impr": 1795,
+   "ctr": 1.95,
+   "link": 13,
    "viewlp": 11,
    "klikwa": 2,
    "contact": 1,
    "purch": 1,
-   "roas": 13.51,
+   "roas": 13.38,
    "hook": 0.0,
    "hold": 0
   },
@@ -1193,11 +1193,26 @@
    "hold": 67.3
   },
   {
+   "nm": "NOV-W2-T15-PUTRI | Safron",
+   "off": false,
+   "spend": 54292,
+   "impr": 5423,
+   "ctr": 1.48,
+   "link": 31,
+   "viewlp": 25,
+   "klikwa": 2,
+   "contact": 1,
+   "purch": 0,
+   "roas": 0.0,
+   "hook": 13.0,
+   "hold": 23.9
+  },
+  {
    "nm": "IMG06 - Self-Care Kewanitaan",
    "off": false,
-   "spend": 52997,
-   "impr": 1061,
-   "ctr": 0.94,
+   "spend": 54030,
+   "impr": 1070,
+   "ctr": 0.93,
    "link": 9,
    "viewlp": 8,
    "klikwa": 1,
@@ -1208,26 +1223,11 @@
    "hold": 0
   },
   {
-   "nm": "NOV-W2-T15-PUTRI | Safron",
-   "off": false,
-   "spend": 49049,
-   "impr": 4672,
-   "ctr": 1.5,
-   "link": 25,
-   "viewlp": 16,
-   "klikwa": 2,
-   "contact": 1,
-   "purch": 0,
-   "roas": 0.0,
-   "hook": 12.3,
-   "hold": 23.4
-  },
-  {
    "nm": "IMG01 - Pasca KB Haid",
    "off": false,
-   "spend": 44916,
-   "impr": 1107,
-   "ctr": 0.99,
+   "spend": 45637,
+   "impr": 1117,
+   "ctr": 1.07,
    "link": 8,
    "viewlp": 6,
    "klikwa": 1,
@@ -1255,9 +1255,9 @@
   {
    "nm": "IMG04 - Jangan Salahkan Usia",
    "off": false,
-   "spend": 40018,
-   "impr": 838,
-   "ctr": 2.74,
+   "spend": 40351,
+   "impr": 844,
+   "ctr": 2.73,
    "link": 18,
    "viewlp": 14,
    "klikwa": 3,
@@ -1270,9 +1270,9 @@
   {
    "nm": "IMG10 - Safron Premium",
    "off": false,
-   "spend": 25688,
-   "impr": 615,
-   "ctr": 1.95,
+   "spend": 25847,
+   "impr": 624,
+   "ctr": 1.92,
    "link": 5,
    "viewlp": 4,
    "klikwa": 1,
@@ -1285,23 +1285,23 @@
   {
    "nm": "NOV-W2-T12-WULAN | Nyaman & PD",
    "off": false,
-   "spend": 22023,
-   "impr": 1273,
-   "ctr": 3.53,
-   "link": 17,
+   "spend": 22105,
+   "impr": 1281,
+   "ctr": 3.59,
+   "link": 18,
    "viewlp": 13,
    "klikwa": 1,
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 25.7,
-   "hold": 31.2
+   "hook": 26.4,
+   "hold": 30.8
   },
   {
    "nm": "NOV-W2-T11-MAYA | 3 Alasan",
    "off": false,
-   "spend": 19715,
-   "impr": 353,
+   "spend": 20045,
+   "impr": 356,
    "ctr": 0.28,
    "link": 0,
    "viewlp": 0,
@@ -1309,23 +1309,23 @@
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 19.5,
-   "hold": 37.7
+   "hook": 19.7,
+   "hold": 37.1
   },
   {
    "nm": "NOV-W2-T14-INDAH | Herbal Lambat",
    "off": false,
-   "spend": 16481,
-   "impr": 409,
-   "ctr": 2.69,
+   "spend": 17062,
+   "impr": 417,
+   "ctr": 2.88,
    "link": 2,
    "viewlp": 1,
    "klikwa": 0,
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 20.0,
-   "hold": 26.8
+   "hook": 19.9,
+   "hold": 27.7
   },
   {
    "nm": "IMG08 - Timeline 30 Hari",
@@ -1360,9 +1360,9 @@
   {
    "nm": "IMG03 - Checklist Gejala",
    "off": false,
-   "spend": 7573,
-   "impr": 126,
-   "ctr": 0.79,
+   "spend": 7614,
+   "impr": 128,
+   "ctr": 0.78,
    "link": 0,
    "viewlp": 0,
    "klikwa": 0,
@@ -1390,40 +1390,40 @@
   {
    "nm": "NOV-W2-T13-SARI | Rekomendasi Kakak",
    "off": false,
-   "spend": 1220,
-   "impr": 15,
-   "ctr": 6.67,
-   "link": 0,
-   "viewlp": 0,
+   "spend": 1583,
+   "impr": 34,
+   "ctr": 2.94,
+   "link": 1,
+   "viewlp": 1,
    "klikwa": 0,
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 13.3,
-   "hold": 50.0
+   "hook": 8.8,
+   "hold": 66.7
   }
  ],
  "content_today": [
   {
    "nm": "WK1 | T05 Bu Yuli",
    "off": false,
-   "spend": 756830,
-   "impr": 17477,
-   "ctr": 4.14,
-   "link": 363,
+   "spend": 762865,
+   "impr": 17614,
+   "ctr": 4.13,
+   "link": 364,
    "viewlp": 265,
    "klikwa": 22,
    "contact": 13,
    "purch": 0,
    "roas": 0.0,
    "hook": 27.4,
-   "hold": 46.7
+   "hold": 46.6
   },
   {
    "nm": "WK1 | T09 Lia",
    "off": false,
-   "spend": 266769,
-   "impr": 5018,
+   "spend": 266880,
+   "impr": 5019,
    "ctr": 6.24,
    "link": 321,
    "viewlp": 194,
@@ -1437,9 +1437,9 @@
   {
    "nm": "IMG09 - Bukan Hormon Sintetis (Off)",
    "off": true,
-   "spend": 125441,
-   "impr": 4490,
-   "ctr": 1.54,
+   "spend": 125981,
+   "impr": 4498,
+   "ctr": 1.53,
    "link": 41,
    "viewlp": 33,
    "klikwa": 2,
@@ -1452,9 +1452,9 @@
   {
    "nm": "IMG05 - Menopause Premium",
    "off": false,
-   "spend": 82626,
-   "impr": 1228,
-   "ctr": 1.63,
+   "spend": 82867,
+   "impr": 1234,
+   "ctr": 1.62,
    "link": 14,
    "viewlp": 12,
    "klikwa": 1,
@@ -1467,24 +1467,39 @@
   {
    "nm": "IMG02 - KB Emosi",
    "off": false,
-   "spend": 73254,
-   "impr": 1772,
-   "ctr": 1.92,
-   "link": 12,
+   "spend": 73973,
+   "impr": 1795,
+   "ctr": 1.95,
+   "link": 13,
    "viewlp": 11,
    "klikwa": 2,
    "contact": 1,
    "purch": 1,
-   "roas": 13.51,
+   "roas": 13.38,
    "hook": 0.0,
    "hold": 0
   },
   {
+   "nm": "NOV-W2-T15-PUTRI | Safron",
+   "off": false,
+   "spend": 54292,
+   "impr": 5423,
+   "ctr": 1.48,
+   "link": 31,
+   "viewlp": 25,
+   "klikwa": 2,
+   "contact": 1,
+   "purch": 0,
+   "roas": 0.0,
+   "hook": 13.0,
+   "hold": 23.9
+  },
+  {
    "nm": "IMG06 - Self-Care Kewanitaan",
    "off": false,
-   "spend": 52997,
-   "impr": 1061,
-   "ctr": 0.94,
+   "spend": 54030,
+   "impr": 1070,
+   "ctr": 0.93,
    "link": 9,
    "viewlp": 8,
    "klikwa": 1,
@@ -1495,26 +1510,11 @@
    "hold": 0
   },
   {
-   "nm": "NOV-W2-T15-PUTRI | Safron",
-   "off": false,
-   "spend": 49049,
-   "impr": 4672,
-   "ctr": 1.5,
-   "link": 25,
-   "viewlp": 16,
-   "klikwa": 2,
-   "contact": 1,
-   "purch": 0,
-   "roas": 0.0,
-   "hook": 12.3,
-   "hold": 23.4
-  },
-  {
    "nm": "IMG01 - Pasca KB Haid",
    "off": false,
-   "spend": 44916,
-   "impr": 1107,
-   "ctr": 0.99,
+   "spend": 45637,
+   "impr": 1117,
+   "ctr": 1.07,
    "link": 8,
    "viewlp": 6,
    "klikwa": 1,
@@ -1527,9 +1527,9 @@
   {
    "nm": "IMG04 - Jangan Salahkan Usia",
    "off": false,
-   "spend": 40018,
-   "impr": 838,
-   "ctr": 2.74,
+   "spend": 40351,
+   "impr": 844,
+   "ctr": 2.73,
    "link": 18,
    "viewlp": 14,
    "klikwa": 3,
@@ -1542,9 +1542,9 @@
   {
    "nm": "IMG10 - Safron Premium",
    "off": false,
-   "spend": 25688,
-   "impr": 615,
-   "ctr": 1.95,
+   "spend": 25847,
+   "impr": 624,
+   "ctr": 1.92,
    "link": 5,
    "viewlp": 4,
    "klikwa": 1,
@@ -1557,17 +1557,17 @@
   {
    "nm": "NOV-W2-T12-WULAN | Nyaman & PD",
    "off": false,
-   "spend": 22023,
-   "impr": 1273,
-   "ctr": 3.53,
-   "link": 17,
+   "spend": 22105,
+   "impr": 1281,
+   "ctr": 3.59,
+   "link": 18,
    "viewlp": 13,
    "klikwa": 1,
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 25.7,
-   "hold": 31.2
+   "hook": 26.4,
+   "hold": 30.8
   },
   {
    "nm": "WK1 | T07 Nisa",
@@ -1587,8 +1587,8 @@
   {
    "nm": "NOV-W2-T11-MAYA | 3 Alasan",
    "off": false,
-   "spend": 19715,
-   "impr": 353,
+   "spend": 20045,
+   "impr": 356,
    "ctr": 0.28,
    "link": 0,
    "viewlp": 0,
@@ -1596,23 +1596,23 @@
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 19.5,
-   "hold": 37.7
+   "hook": 19.7,
+   "hold": 37.1
   },
   {
    "nm": "NOV-W2-T14-INDAH | Herbal Lambat",
    "off": false,
-   "spend": 16481,
-   "impr": 409,
-   "ctr": 2.69,
+   "spend": 17062,
+   "impr": 417,
+   "ctr": 2.88,
    "link": 2,
    "viewlp": 1,
    "klikwa": 0,
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 20.0,
-   "hold": 26.8
+   "hook": 19.9,
+   "hold": 27.7
   },
   {
    "nm": "IMG08 - Timeline 30 Hari",
@@ -1632,9 +1632,9 @@
   {
    "nm": "IMG03 - Checklist Gejala",
    "off": false,
-   "spend": 7573,
-   "impr": 126,
-   "ctr": 0.79,
+   "spend": 7614,
+   "impr": 128,
+   "ctr": 0.78,
    "link": 0,
    "viewlp": 0,
    "klikwa": 0,
@@ -1677,34 +1677,34 @@
   {
    "nm": "NOV-W2-T13-SARI | Rekomendasi Kakak",
    "off": false,
-   "spend": 1220,
-   "impr": 15,
-   "ctr": 6.67,
-   "link": 0,
-   "viewlp": 0,
+   "spend": 1583,
+   "impr": 34,
+   "ctr": 2.94,
+   "link": 1,
+   "viewlp": 1,
    "klikwa": 0,
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 13.3,
-   "hold": 50.0
+   "hook": 8.8,
+   "hold": 66.7
   }
  ],
  "content": [
   {
    "nm": "WK1 | T05 Bu Yuli",
    "off": false,
-   "spend": 3173297,
-   "impr": 71406,
-   "ctr": 7.98,
-   "link": 3488,
+   "spend": 3179332,
+   "impr": 71546,
+   "ctr": 7.97,
+   "link": 3489,
    "viewlp": 2328,
    "klikwa": 83,
    "contact": 36,
    "purch": 1,
    "roas": 0.31,
    "hook": 31.8,
-   "hold": 49.1
+   "hold": 49.0
   },
   {
    "nm": "WK1 | T10 Citra (Off)",
@@ -1739,8 +1739,8 @@
   {
    "nm": "WK1 | T09 Lia",
    "off": false,
-   "spend": 384860,
-   "impr": 7858,
+   "spend": 384971,
+   "impr": 7859,
    "ctr": 5.94,
    "link": 452,
    "viewlp": 279,
@@ -1799,9 +1799,9 @@
   {
    "nm": "IMG09 - Bukan Hormon Sintetis (Off)",
    "off": true,
-   "spend": 125441,
-   "impr": 4490,
-   "ctr": 1.54,
+   "spend": 125981,
+   "impr": 4498,
+   "ctr": 1.53,
    "link": 41,
    "viewlp": 33,
    "klikwa": 2,
@@ -1814,9 +1814,9 @@
   {
    "nm": "IMG05 - Menopause Premium",
    "off": false,
-   "spend": 82626,
-   "impr": 1228,
-   "ctr": 1.63,
+   "spend": 82867,
+   "impr": 1234,
+   "ctr": 1.62,
    "link": 14,
    "viewlp": 12,
    "klikwa": 1,
@@ -1829,15 +1829,15 @@
   {
    "nm": "IMG02 - KB Emosi",
    "off": false,
-   "spend": 73254,
-   "impr": 1772,
-   "ctr": 1.92,
-   "link": 12,
+   "spend": 73973,
+   "impr": 1795,
+   "ctr": 1.95,
+   "link": 13,
    "viewlp": 11,
    "klikwa": 2,
    "contact": 1,
    "purch": 1,
-   "roas": 13.51,
+   "roas": 13.38,
    "hook": 0.0,
    "hold": 0
   },
@@ -1857,11 +1857,26 @@
    "hold": 67.3
   },
   {
+   "nm": "NOV-W2-T15-PUTRI | Safron",
+   "off": false,
+   "spend": 54292,
+   "impr": 5423,
+   "ctr": 1.48,
+   "link": 31,
+   "viewlp": 25,
+   "klikwa": 2,
+   "contact": 1,
+   "purch": 0,
+   "roas": 0.0,
+   "hook": 13.0,
+   "hold": 23.9
+  },
+  {
    "nm": "IMG06 - Self-Care Kewanitaan",
    "off": false,
-   "spend": 52997,
-   "impr": 1061,
-   "ctr": 0.94,
+   "spend": 54030,
+   "impr": 1070,
+   "ctr": 0.93,
    "link": 9,
    "viewlp": 8,
    "klikwa": 1,
@@ -1872,26 +1887,11 @@
    "hold": 0
   },
   {
-   "nm": "NOV-W2-T15-PUTRI | Safron",
-   "off": false,
-   "spend": 49049,
-   "impr": 4672,
-   "ctr": 1.5,
-   "link": 25,
-   "viewlp": 16,
-   "klikwa": 2,
-   "contact": 1,
-   "purch": 0,
-   "roas": 0.0,
-   "hook": 12.3,
-   "hold": 23.4
-  },
-  {
    "nm": "IMG01 - Pasca KB Haid",
    "off": false,
-   "spend": 44916,
-   "impr": 1107,
-   "ctr": 0.99,
+   "spend": 45637,
+   "impr": 1117,
+   "ctr": 1.07,
    "link": 8,
    "viewlp": 6,
    "klikwa": 1,
@@ -1919,9 +1919,9 @@
   {
    "nm": "IMG04 - Jangan Salahkan Usia",
    "off": false,
-   "spend": 40018,
-   "impr": 838,
-   "ctr": 2.74,
+   "spend": 40351,
+   "impr": 844,
+   "ctr": 2.73,
    "link": 18,
    "viewlp": 14,
    "klikwa": 3,
@@ -1934,9 +1934,9 @@
   {
    "nm": "IMG10 - Safron Premium",
    "off": false,
-   "spend": 25688,
-   "impr": 615,
-   "ctr": 1.95,
+   "spend": 25847,
+   "impr": 624,
+   "ctr": 1.92,
    "link": 5,
    "viewlp": 4,
    "klikwa": 1,
@@ -1949,23 +1949,23 @@
   {
    "nm": "NOV-W2-T12-WULAN | Nyaman & PD",
    "off": false,
-   "spend": 22023,
-   "impr": 1273,
-   "ctr": 3.53,
-   "link": 17,
+   "spend": 22105,
+   "impr": 1281,
+   "ctr": 3.59,
+   "link": 18,
    "viewlp": 13,
    "klikwa": 1,
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 25.7,
-   "hold": 31.2
+   "hook": 26.4,
+   "hold": 30.8
   },
   {
    "nm": "NOV-W2-T11-MAYA | 3 Alasan",
    "off": false,
-   "spend": 19715,
-   "impr": 353,
+   "spend": 20045,
+   "impr": 356,
    "ctr": 0.28,
    "link": 0,
    "viewlp": 0,
@@ -1973,23 +1973,23 @@
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 19.5,
-   "hold": 37.7
+   "hook": 19.7,
+   "hold": 37.1
   },
   {
    "nm": "NOV-W2-T14-INDAH | Herbal Lambat",
    "off": false,
-   "spend": 16481,
-   "impr": 409,
-   "ctr": 2.69,
+   "spend": 17062,
+   "impr": 417,
+   "ctr": 2.88,
    "link": 2,
    "viewlp": 1,
    "klikwa": 0,
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 20.0,
-   "hold": 26.8
+   "hook": 19.9,
+   "hold": 27.7
   },
   {
    "nm": "IMG08 - Timeline 30 Hari",
@@ -2024,9 +2024,9 @@
   {
    "nm": "IMG03 - Checklist Gejala",
    "off": false,
-   "spend": 7573,
-   "impr": 126,
-   "ctr": 0.79,
+   "spend": 7614,
+   "impr": 128,
+   "ctr": 0.78,
    "link": 0,
    "viewlp": 0,
    "klikwa": 0,
@@ -2054,17 +2054,17 @@
   {
    "nm": "NOV-W2-T13-SARI | Rekomendasi Kakak",
    "off": false,
-   "spend": 1220,
-   "impr": 15,
-   "ctr": 6.67,
-   "link": 0,
-   "viewlp": 0,
+   "spend": 1583,
+   "impr": 34,
+   "ctr": 2.94,
+   "link": 1,
+   "viewlp": 1,
    "klikwa": 0,
    "contact": 0,
    "purch": 0,
    "roas": 0.0,
-   "hook": 13.3,
-   "hold": 50.0
+   "hook": 8.8,
+   "hold": 66.7
   }
  ]
 }
