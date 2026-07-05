@@ -1,0 +1,7 @@
+# JANGAN pernah upload token ke GitHub
+token.txt
+
+# file sementara
+__pycache__/
+*.pyc
+.DS_Store

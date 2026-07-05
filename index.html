@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novia — Performance Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#161018;--surface:#1f1826;--surface2:#2a2033;--line:#352a40;--txt:#f4eef7;--mut:#a99bb4;
+--pink:#E58AB0;--plum:#b678a0;--gold:#D9B26A;--good:#3FB98A;--red:#E5657F;--amber:#E9A94C;--blue:#6AA6E0}
+.light{--bg:#faf5f8;--surface:#ffffff;--surface2:#f4ecf2;--line:#ecdae6;--txt:#2b2130;--mut:#8a7d93;--plum:#9c5f86}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding:0 0 12px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--gold));display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:16px;flex-shrink:0}
+h1{font-size:18px;font-weight:600;letter-spacing:.2px}.sub{font-size:12px;color:var(--mut)}
+.live{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:5px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.tgl{background:var(--surface2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:inherit}
+.banner{background:rgba(63,185,138,.12);border:1px solid rgba(63,185,138,.35);border-radius:10px;padding:8px 12px;font-size:11.5px;color:var(--txt);margin:10px 0}
+.rstamp{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11px;color:var(--mut);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin-bottom:10px}.rstamp b{color:var(--txt);font-weight:600}
+.tabs{display:flex;gap:4px;margin:12px 0;background:var(--surface);padding:4px;border-radius:10px;flex-wrap:wrap}
+.tab{padding:7px 13px;border-radius:7px;font-size:13px;color:var(--mut);background:none;border:none;cursor:pointer;font-family:inherit}
+.tab.active{background:var(--surface2);color:var(--txt);font-weight:600}
+.grid{display:grid;gap:9px}.k3{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}.k4{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.lab{font-size:11.5px;color:var(--mut);margin-bottom:3px}.val{font-size:19px;font-weight:600}.meta{font-size:10.5px;color:var(--mut);margin-top:2px}
+.sec{margin:18px 0 8px;font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.danger{color:var(--red)}.good{color:var(--good)}.warn{color:var(--amber)}.acc{color:var(--pink)}.mut{color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{text-align:right;padding:6px 7px;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-weight:500;font-size:10.5px}
+.tw{overflow-x:auto}.tbl{max-height:360px;overflow-y:auto}
+.pill{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.5px;font-weight:500}
+.chartbox{position:relative;height:220px}.note{font-size:10.5px;color:var(--mut);margin-top:6px}.hide{display:none}
+.bar{height:7px;border-radius:4px;background:var(--surface2);overflow:hidden;margin-top:3px}.bar>i{display:block;height:100%;background:var(--pink)}
+.brow{font-size:11.5px;display:flex;justify-content:space-between;margin-top:7px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;border-left:3px solid var(--line)}
+.ohd{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:7px}.ot{font-size:14px;font-weight:600}
+.orow{display:flex;gap:8px;margin-bottom:5px;font-size:12.5px}.orow .k{color:var(--mut);min-width:54px;flex-shrink:0;font-weight:500}
+.eff{font-size:11px;color:var(--good);margin-top:5px}
+.exec{background:rgba(229,101,127,.1);border:1px solid rgba(229,101,127,.3);border-radius:10px;padding:10px 13px;font-size:12.5px;margin:12px 0}
+.funl{margin:10px 0;display:flex;flex-direction:column;gap:4px}
+.fstep{display:flex;align-items:center;gap:10px}
+.fbar{color:#fff;border-radius:7px;padding:8px 13px;font-size:12px;font-weight:500;white-space:nowrap;min-width:90px}
+.fdrop{font-size:11px;color:var(--mut)}
+.frep{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13px}
+.frow{display:flex;align-items:baseline;gap:8px;padding:5px 0;border-bottom:1px dashed var(--line)}.frow:last-child{border:none}
+.fk{color:var(--mut);min-width:118px;flex-shrink:0}.fv{font-weight:600}.fp{color:var(--mut);font-size:11px;margin-left:auto;text-align:right}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--mut);font-size:12.5px}
+@media(max-width:640px){.wrap{padding:10px}.card{padding:9px 10px}.val{font-size:16px}.tab{padding:6px 9px;font-size:12px}table{font-size:11px}th,td{padding:5px 5px}}
+</style></head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">
+    <div class="logo">N</div>
+    <div><h1>Novia — Performance Dashboard</h1><div class="sub"><span class="live"></span>Akun: SVO Zainal Rauf (Novia)</div></div>
+  </div>
+  <button class="tgl" id="tgl">☀︎ Mode Terang</button>
+</header>
+
+<div class="banner">✅ <b>Data asli akun Novia</b> ditarik langsung dari Meta Ads API — funnel lengkap sampai Contact &amp; ROAS, semua attributed ke iklan. Tab Follow-up masih butuh catatan penjualan (belum tersambung).</div>
+
+<div class="rstamp">📅 Data per <b id="genat">—</b> · rentang funnel/demografi: <b id="win">—</b> · sumber: Meta Ads API (akun 1630362674392137)</div>
+
+<div class="tabs">
+  <button class="tab active" data-t="now">Hari Ini</button>
+  <button class="tab" data-t="trend">Mingguan &amp; Bulanan</button>
+  <button class="tab" data-t="cthari">Konten Hari Ini</button>
+  <button class="tab" data-t="ctbulan">Konten Bulan Ini</button>
+  <button class="tab" data-t="wil">Insight Wilayah</button>
+  <button class="tab" data-t="fu">Follow-up</button>
+  <button class="tab" data-t="opt">Action Plan</button>
+</div>
+
+<div id="now" class="pane"></div>
+<div id="trend" class="pane hide"></div>
+<div id="cthari" class="pane hide"></div>
+<div id="ctbulan" class="pane hide"></div>
+<div id="wil" class="pane hide"></div>
+<div id="fu" class="pane hide"></div>
+<div id="opt" class="pane hide"></div>
+
+<div class="note" style="margin:20px 0 8px;text-align:center">Novia Performance Dashboard · data Meta Ads asli · dibuat untuk keperluan internal</div>
+</div>
+
+<script>
+/* ============================================================
+   DATA ASLI AKUN NOVIA (ditarik dari Meta Ads API, 5 Jul 2026)
+   Angka: spend & klik = IDR/jumlah asli. Rentang funnel/demografi = 5 Jun–4 Jul 2026.
+   ============================================================ */
+/* DATA-START */
+const DATA = {"generated_at": "05 Jul 2026 16:35", "window": "06 Jun – 05 Jul 2026", "today": {"spend": 1318236, "impr": 30261, "reach": 23199, "clicks": 1080, "ctr": 3.57, "cpc": 1221, "cpm": 43562, "freq": 1.3, "link": 658, "viewlp": 451, "klikwa": 39, "contact": 19, "purch": 1, "roas": 0.75}, "yesterday": {"spend": 1334418, "impr": 36170, "reach": 28775, "clicks": 1724, "ctr": 4.77, "cpc": 774, "cpm": 36893, "freq": 1.26, "link": 907, "viewlp": 623, "klikwa": 38, "contact": 18, "purch": 1, "roas": 0.74}, "campaigns_today": [{"name": "NOVIA | Sales | WK1 Learning | Jun26", "off": false, "spend": 910937, "impr": 19879, "clicks": 907, "ctr": 4.56, "cpc": 1004, "link": 559, "viewlp": 379, "klikwa": 27, "contact": 15, "purch": 0, "roas": 0.0}, {"name": "NOVIA | Sales | IMG-B2 Usia 40+ & Menopause | Jul26", "off": false, "spend": 153511, "impr": 2816, "clicks": 48, "ctr": 1.7, "cpc": 3198, "link": 38, "viewlp": 32, "klikwa": 5, "contact": 3, "purch": 0, "roas": 0.0}, {"name": "NOVIA | Sales | IMG-B3 Trust & Premium | Jul26", "off": false, "spend": 145247, "impr": 4861, "clicks": 76, "ctr": 1.56, "cpc": 1911, "link": 41, "viewlp": 33, "klikwa": 3, "contact": 0, "purch": 0, "roas": 0.0}, {"name": "NOVIA | Sales | IMG-B1 Hormon & Siklus | Jul26", "off": false, "spend": 101582, "impr": 2406, "clicks": 35, "ctr": 1.45, "cpc": 2902, "link": 16, "viewlp": 14, "klikwa": 3, "contact": 1, "purch": 1, "roas": 9.75}, {"name": "NOVIA | VID-B2 Putri - Safron | Jul26", "off": false, "spend": 5287, "impr": 99, "clicks": 3, "ctr": 3.03, "cpc": 1762, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0}, {"name": "NOVIA | VID-B2 Maya - 3 Alasan | Jul26", "off": false, "spend": 4950, "impr": 61, "clicks": 0, "ctr": 0.0, "cpc": 0, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0}, {"name": "NOVIA | VID-B2 Wulan - Nyaman & PD | Jul26", "off": false, "spend": 4433, "impr": 281, "clicks": 14, "ctr": 4.98, "cpc": 317, "link": 4, "viewlp": 2, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0}, {"name": "NOVIA | VID-B2 Indah - Herbal Lambat | Jul26", "off": false, "spend": 2105, "impr": 63, "clicks": 2, "ctr": 3.17, "cpc": 1052, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0}, {"name": "NOVIA | VID-B2 Sari - Rekomendasi Kakak | Jul26", "off": false, "spend": 0, "impr": 0, "clicks": 0, "ctr": 0.0, "cpc": 0, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0}], "trend": [["06-29", 922735, 452, 0], ["06-30", 1057809, 692, 1], ["07-01", 2230329, 6590, 1], ["07-02", 1880037, 6790, 0], ["07-03", 1148694, 2685, 0], ["07-04", 1334418, 907, 1]], "weekly": [["06-26→07-02", 6090910, 18586, 14524, 2, 0.46], ["07-03→07-04", 2483112, 4737, 3592, 1, 0.4]], "monthly": [["April", 2644294, 3934, 3701, 0, 0.0], ["Juni", 1980544, 4234, 1144, 1, 0.5], ["Juli", 6593478, 19089, 16972, 2, 0.42]], "funnel": {"spend": 8574022, "impressions": 154975, "reach": 77238, "clicks": 23323, "link_clicks": 18116, "viewlp": 11757, "klikwa": 246, "contact": 53, "purchases": 3, "ctr": 15.05, "cpc": 368, "cpm": 55325, "frequency": 2.01, "roas": 0.44}, "aud_today": {"age": [["45-54", 11124], ["35-44", 9526], ["25-34", 3577], ["18-24", 3383], ["55-64", 2288], ["65+", 568]], "gender": [["Perempuan", 26463], ["Laki-laki", 3879], ["Tidak diketahui", 124]], "placement": [["Facebook", 956068], ["Instagram", 220605], ["Audience Network", 141556], ["Threads", 7]], "region": [["Papua", 4057], ["Maluku Utara", 2011], ["NTT", 1730], ["Papua Barat", 1624], ["Maluku", 1539], ["Kalimantan Timur", 1408], ["Sulawesi Selatan", 1259], ["Sumatera Utara", 1165], ["Kalimantan Barat", 1153], ["Sulawesi Tengah", 1144], ["Jawa Barat", 1144], ["Sulawesi Utara", 1100], ["Kalimantan Tengah", 1007], ["NTB", 934], ["Bali", 880], ["Jawa Timur", 847], ["Sulawesi Tenggara", 806], ["Jawa Tengah", 754], ["Jakarta", 750], ["Riau", 700], ["Sumatera Selatan", 466], ["Sulawesi Barat", 435], ["Riau Islands Province", 406], ["Kalimantan Selatan", 376], ["Jambi", 375], ["Gorontalo", 357], ["Aceh", 356], ["Sumatera Barat", 349], ["Banten", 322], ["Kalimantan Utara", 316], ["Lampung", 275], ["DI Yogyakarta", 144], ["Bengkulu", 139], ["Bangka–Belitung Islands", 134], ["Unknown", 4]]}, "aud_30d": {"age": [["45-54", 47794], ["35-44", 39403], ["25-34", 21928], ["55-64", 19458], ["18-24", 18876], ["65+", 7516]], "gender": [["Perempuan", 127610], ["Laki-laki", 26745], ["Tidak diketahui", 620]], "placement": [["Audience Network", 4184270], ["Facebook", 3810784], ["Instagram", 578634], ["Threads", 334]], "region": [["Papua", 13684], ["Jawa Barat", 11647], ["Jawa Timur", 9231], ["NTT", 8322], ["Sumatera Utara", 7893], ["Jakarta", 7814], ["Jawa Tengah", 7157], ["Maluku Utara", 6313], ["Sulawesi Selatan", 6240], ["Maluku", 5856], ["Kalimantan Timur", 5744], ["Papua Barat", 5698], ["Sulawesi Utara", 5686], ["Kalimantan Barat", 4811], ["Sulawesi Tengah", 4525], ["Bali", 4225], ["Riau", 4001], ["NTB", 3750], ["Sulawesi Tenggara", 3385], ["Kalimantan Tengah", 3288], ["Sumatera Selatan", 3250], ["Banten", 2724], ["Sumatera Barat", 2604], ["Riau Islands Province", 2369], ["Lampung", 2031], ["Jambi", 1882], ["Gorontalo", 1813], ["Aceh", 1798], ["Sulawesi Barat", 1750], ["Kalimantan Selatan", 1533], ["DI Yogyakarta", 1280], ["Kalimantan Utara", 981], ["Bengkulu", 942], ["Bangka–Belitung Islands", 705], ["Unknown", 43]]}, "region_month": [{"prov": "Jakarta", "spend": 922078, "link": 2264}, {"prov": "Jawa Barat", "spend": 804542, "link": 2416}, {"prov": "Jawa Timur", "spend": 629550, "link": 2305}, {"prov": "Papua", "spend": 588676, "link": 438}, {"prov": "Sumatera Utara", "spend": 397613, "link": 1100}, {"prov": "Jawa Tengah", "spend": 373399, "link": 1413}, {"prov": "Sulawesi Selatan", "spend": 291364, "link": 729}, {"prov": "Kalimantan Timur", "spend": 283411, "link": 599}, {"prov": "Bali", "spend": 280319, "link": 423}, {"prov": "NTT", "spend": 249678, "link": 239}, {"prov": "Sulawesi Utara", "spend": 238553, "link": 331}, {"prov": "Maluku", "spend": 218495, "link": 285}, {"prov": "Kalimantan Barat", "spend": 215055, "link": 363}, {"prov": "Sulawesi Tengah", "spend": 211338, "link": 287}, {"prov": "Maluku Utara", "spend": 202846, "link": 162}, {"prov": "Papua Barat", "spend": 198675, "link": 216}, {"prov": "Banten", "spend": 197968, "link": 642}, {"prov": "Sulawesi Tenggara", "spend": 173430, "link": 246}, {"prov": "Kalimantan Tengah", "spend": 165267, "link": 227}, {"prov": "NTB", "spend": 147337, "link": 227}, {"prov": "Gorontalo", "spend": 120355, "link": 190}, {"prov": "Riau", "spend": 118966, "link": 285}, {"prov": "Kalimantan Selatan", "spend": 112352, "link": 198}, {"prov": "Sumatera Selatan", "spend": 111946, "link": 304}, {"prov": "Riau Islands Province", "spend": 111396, "link": 295}, {"prov": "Sumatera Barat", "spend": 100336, "link": 262}, {"prov": "Jambi", "spend": 84308, "link": 200}, {"prov": "Aceh", "spend": 81187, "link": 258}, {"prov": "Lampung", "spend": 73348, "link": 225}, {"prov": "DI Yogyakarta", "spend": 63558, "link": 220}, {"prov": "Sulawesi Barat", "spend": 59270, "link": 114}, {"prov": "Kalimantan Utara", "spend": 42162, "link": 49}, {"prov": "Bengkulu", "spend": 26428, "link": 63}, {"prov": "Bangka–Belitung Islands", "spend": 24397, "link": 42}, {"prov": "Unknown", "spend": 1927, "link": 13}], "region_today": [{"prov": "Papua", "spend": 146309, "link": 45}, {"prov": "Jawa Barat", "spend": 93780, "link": 63}, {"prov": "Jakarta", "spend": 74239, "link": 60}, {"prov": "Maluku Utara", "spend": 72235, "link": 22}, {"prov": "Kalimantan Barat", "spend": 66982, "link": 37}, {"prov": "Kalimantan Timur", "spend": 63891, "link": 30}, {"prov": "NTT", "spend": 55637, "link": 21}, {"prov": "Papua Barat", "spend": 53478, "link": 23}, {"prov": "Maluku", "spend": 52865, "link": 16}, {"prov": "Sulawesi Selatan", "spend": 49477, "link": 29}, {"prov": "Sulawesi Tengah", "spend": 47709, "link": 19}, {"prov": "Jawa Timur", "spend": 47400, "link": 41}, {"prov": "Bali", "spend": 45867, "link": 11}, {"prov": "Kalimantan Tengah", "spend": 42617, "link": 14}, {"prov": "Sumatera Utara", "spend": 41824, "link": 35}, {"prov": "Sulawesi Utara", "spend": 37113, "link": 16}, {"prov": "Sulawesi Tenggara", "spend": 36830, "link": 10}, {"prov": "Jawa Tengah", "spend": 36207, "link": 31}, {"prov": "Banten", "spend": 30229, "link": 6}, {"prov": "NTB", "spend": 28874, "link": 16}, {"prov": "Kalimantan Selatan", "spend": 26087, "link": 13}, {"prov": "Riau", "spend": 20300, "link": 10}, {"prov": "Sulawesi Barat", "spend": 19104, "link": 4}, {"prov": "Sumatera Selatan", "spend": 18731, "link": 2}, {"prov": "Lampung", "spend": 18567, "link": 6}, {"prov": "Jambi", "spend": 18561, "link": 4}, {"prov": "Riau Islands Province", "spend": 14319, "link": 15}, {"prov": "Gorontalo", "spend": 14079, "link": 8}, {"prov": "Kalimantan Utara", "spend": 13684, "link": 2}, {"prov": "Aceh", "spend": 12766, "link": 22}, {"prov": "Sumatera Barat", "spend": 11311, "link": 13}, {"prov": "DI Yogyakarta", "spend": 6408, "link": 8}, {"prov": "Bangka–Belitung Islands", "spend": 5570, "link": 2}, {"prov": "Bengkulu", "spend": 4980, "link": 4}, {"prov": "Unknown", "spend": 22, "link": 0}], "content_month": [{"nm": "WK1 | T05 Bu Yuli", "off": false, "spend": 3075064, "impr": 69151, "ctr": 8.12, "link": 3431, "viewlp": 2290, "klikwa": 80, "contact": 36, "purch": 1, "roas": 0.32, "hook": 31.8, "hold": 49.3}, {"nm": "WK1 | T10 Citra (Off)", "off": true, "spend": 2566140, "impr": 37781, "ctr": 27.15, "link": 9788, "viewlp": 6250, "klikwa": 100, "contact": 16, "purch": 1, "roas": 0.7, "hook": 66.1, "hold": 63.9}, {"nm": "WK1 | T01 Sasha (Off)", "off": true, "spend": 421362, "impr": 4571, "ctr": 19.91, "link": 996, "viewlp": 645, "klikwa": 18, "contact": 1, "purch": 0, "roas": 0.0, "hook": 72.5, "hold": 72.0}, {"nm": "WK1 | T03 Dinda (Off)", "off": true, "spend": 356171, "impr": 3778, "ctr": 29.06, "link": 1357, "viewlp": 884, "klikwa": 9, "contact": 0, "purch": 0, "roas": 0.0, "hook": 75.2, "hold": 74.7}, {"nm": "WK1 | T09 Lia", "off": false, "spend": 342377, "impr": 7064, "ctr": 5.37, "link": 353, "viewlp": 218, "klikwa": 11, "contact": 4, "purch": 0, "roas": 0.0, "hook": 42.9, "hold": 47.1}, {"nm": "WK1 | T08 Vina (Off)", "off": true, "spend": 333458, "impr": 3767, "ctr": 17.12, "link": 691, "viewlp": 456, "klikwa": 9, "contact": 0, "purch": 0, "roas": 0.0, "hook": 70.3, "hold": 76.7}, {"nm": "WK1 | T02 Rani (Off)", "off": true, "spend": 289491, "impr": 3347, "ctr": 24.17, "link": 629, "viewlp": 416, "klikwa": 8, "contact": 0, "purch": 0, "roas": 0.0, "hook": 61.4, "hold": 66.4}, {"nm": "IMG09 - Bukan Hormon Sintetis", "off": false, "spend": 113943, "impr": 4088, "ctr": 1.49, "link": 35, "viewlp": 27, "klikwa": 2, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG05 - Menopause Premium", "off": false, "spend": 70581, "impr": 1061, "ctr": 1.51, "link": 12, "viewlp": 11, "klikwa": 1, "contact": 1, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "WK1 | T07 Nisa", "off": false, "spend": 69178, "impr": 884, "ctr": 17.19, "link": 140, "viewlp": 82, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 56.6, "hold": 67.6}, {"nm": "IMG02 - KB Emosi", "off": false, "spend": 52540, "impr": 1285, "ctr": 1.87, "link": 9, "viewlp": 9, "klikwa": 2, "contact": 1, "purch": 1, "roas": 18.84, "hook": 0.0, "hold": 0}, {"nm": "IMG06 - Self-Care Kewanitaan", "off": false, "spend": 48703, "impr": 1003, "ctr": 1.0, "link": 9, "viewlp": 8, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG01 - Pasca KB Haid", "off": false, "spend": 42103, "impr": 1020, "ctr": 0.98, "link": 7, "viewlp": 5, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "WK1 | T04 Mega (Off)", "off": true, "spend": 41664, "impr": 537, "ctr": 21.6, "link": 136, "viewlp": 72, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 51.6, "hold": 60.3}, {"nm": "IMG04 - Jangan Salahkan Usia", "off": false, "spend": 34227, "impr": 752, "ctr": 2.93, "link": 17, "viewlp": 13, "klikwa": 3, "contact": 2, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG10 - Safron Premium", "off": false, "spend": 15614, "impr": 407, "ctr": 1.72, "link": 2, "viewlp": 2, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG08 - Timeline 30 Hari", "off": false, "spend": 12443, "impr": 300, "ctr": 0.67, "link": 2, "viewlp": 2, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "WK1 | T06 Tika", "off": false, "spend": 9510, "impr": 209, "ctr": 6.22, "link": 10, "viewlp": 4, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 26.8, "hold": 33.9}, {"nm": "IMG03 - Checklist Gejala", "off": false, "spend": 7044, "impr": 104, "ctr": 0.96, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "NOV-W2-T11-MAYA | 3 Alasan", "off": false, "spend": 5411, "impr": 71, "ctr": 0.0, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 5.6, "hold": 25.0}, {"nm": "NOV-W2-T15-PUTRI | Safron", "off": false, "spend": 5287, "impr": 99, "ctr": 3.03, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 2.0, "hold": 50.0}, {"nm": "NOV-W2-T12-WULAN | Nyaman & PD", "off": false, "spend": 4433, "impr": 281, "ctr": 4.98, "link": 8, "viewlp": 2, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 17.8, "hold": 38.0}, {"nm": "IMG07 - Bu Ratna Quote", "off": false, "spend": 3247, "impr": 66, "ctr": 9.09, "link": 2, "viewlp": 2, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "NOV-W2-T14-INDAH | Herbal Lambat", "off": false, "spend": 2105, "impr": 63, "ctr": 3.17, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 12.7, "hold": 0.0}, {"nm": "NOV-W2-T13-SARI | Rekomendasi Kakak", "off": false, "spend": 0, "impr": 0, "ctr": 0.0, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0, "hold": 0}], "content_today": [{"nm": "WK1 | T05 Bu Yuli", "off": false, "spend": 658597, "impr": 15252, "ctr": 4.18, "link": 308, "viewlp": 227, "klikwa": 19, "contact": 13, "purch": 0, "roas": 0.0, "hook": 27.1, "hold": 47.1}, {"nm": "WK1 | T09 Lia", "off": false, "spend": 224286, "impr": 4224, "ctr": 5.33, "link": 222, "viewlp": 133, "klikwa": 8, "contact": 2, "purch": 0, "roas": 0.0, "hook": 44.3, "hold": 49.6}, {"nm": "IMG09 - Bukan Hormon Sintetis", "off": false, "spend": 113943, "impr": 4088, "ctr": 1.49, "link": 35, "viewlp": 27, "klikwa": 2, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG05 - Menopause Premium", "off": false, "spend": 70581, "impr": 1061, "ctr": 1.51, "link": 12, "viewlp": 11, "klikwa": 1, "contact": 1, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG02 - KB Emosi", "off": false, "spend": 52540, "impr": 1285, "ctr": 1.87, "link": 9, "viewlp": 9, "klikwa": 2, "contact": 1, "purch": 1, "roas": 18.84, "hook": 0.0, "hold": 0}, {"nm": "IMG06 - Self-Care Kewanitaan", "off": false, "spend": 48703, "impr": 1003, "ctr": 1.0, "link": 9, "viewlp": 8, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG01 - Pasca KB Haid", "off": false, "spend": 42103, "impr": 1020, "ctr": 0.98, "link": 7, "viewlp": 5, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG04 - Jangan Salahkan Usia", "off": false, "spend": 34227, "impr": 752, "ctr": 2.93, "link": 17, "viewlp": 13, "klikwa": 3, "contact": 2, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "WK1 | T07 Nisa", "off": false, "spend": 21466, "impr": 274, "ctr": 13.14, "link": 26, "viewlp": 13, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 51.8, "hold": 59.9}, {"nm": "IMG10 - Safron Premium", "off": false, "spend": 15614, "impr": 407, "ctr": 1.72, "link": 2, "viewlp": 2, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG08 - Timeline 30 Hari", "off": false, "spend": 12443, "impr": 300, "ctr": 0.67, "link": 2, "viewlp": 2, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG03 - Checklist Gejala", "off": false, "spend": 7044, "impr": 104, "ctr": 0.96, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "WK1 | T06 Tika", "off": false, "spend": 6588, "impr": 129, "ctr": 6.2, "link": 3, "viewlp": 1, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 21.7, "hold": 32.1}, {"nm": "NOV-W2-T11-MAYA | 3 Alasan", "off": false, "spend": 5411, "impr": 71, "ctr": 0.0, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 5.6, "hold": 25.0}, {"nm": "NOV-W2-T15-PUTRI | Safron", "off": false, "spend": 5287, "impr": 99, "ctr": 3.03, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 2.0, "hold": 50.0}, {"nm": "NOV-W2-T12-WULAN | Nyaman & PD", "off": false, "spend": 4433, "impr": 281, "ctr": 4.98, "link": 8, "viewlp": 2, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 17.8, "hold": 38.0}, {"nm": "IMG07 - Bu Ratna Quote", "off": false, "spend": 3247, "impr": 66, "ctr": 9.09, "link": 2, "viewlp": 2, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "NOV-W2-T14-INDAH | Herbal Lambat", "off": false, "spend": 2105, "impr": 63, "ctr": 3.17, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 12.7, "hold": 0.0}, {"nm": "NOV-W2-T13-SARI | Rekomendasi Kakak", "off": false, "spend": 0, "impr": 0, "ctr": 0.0, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0, "hold": 0}], "content": [{"nm": "WK1 | T05 Bu Yuli", "off": false, "spend": 3075064, "impr": 69151, "ctr": 8.12, "link": 3431, "viewlp": 2290, "klikwa": 80, "contact": 36, "purch": 1, "roas": 0.32, "hook": 31.8, "hold": 49.3}, {"nm": "WK1 | T10 Citra (Off)", "off": true, "spend": 2566140, "impr": 37781, "ctr": 27.15, "link": 9788, "viewlp": 6250, "klikwa": 100, "contact": 16, "purch": 1, "roas": 0.7, "hook": 66.1, "hold": 63.9}, {"nm": "WK1 | T01 Sasha (Off)", "off": true, "spend": 421362, "impr": 4571, "ctr": 19.91, "link": 996, "viewlp": 645, "klikwa": 18, "contact": 1, "purch": 0, "roas": 0.0, "hook": 72.5, "hold": 72.0}, {"nm": "WK1 | T03 Dinda (Off)", "off": true, "spend": 356171, "impr": 3778, "ctr": 29.06, "link": 1357, "viewlp": 884, "klikwa": 9, "contact": 0, "purch": 0, "roas": 0.0, "hook": 75.2, "hold": 74.7}, {"nm": "WK1 | T09 Lia", "off": false, "spend": 342377, "impr": 7064, "ctr": 5.37, "link": 353, "viewlp": 218, "klikwa": 11, "contact": 4, "purch": 0, "roas": 0.0, "hook": 42.9, "hold": 47.1}, {"nm": "WK1 | T08 Vina (Off)", "off": true, "spend": 333458, "impr": 3767, "ctr": 17.12, "link": 691, "viewlp": 456, "klikwa": 9, "contact": 0, "purch": 0, "roas": 0.0, "hook": 70.3, "hold": 76.7}, {"nm": "WK1 | T02 Rani (Off)", "off": true, "spend": 289491, "impr": 3347, "ctr": 24.17, "link": 629, "viewlp": 416, "klikwa": 8, "contact": 0, "purch": 0, "roas": 0.0, "hook": 61.4, "hold": 66.4}, {"nm": "IMG09 - Bukan Hormon Sintetis", "off": false, "spend": 113943, "impr": 4088, "ctr": 1.49, "link": 35, "viewlp": 27, "klikwa": 2, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG05 - Menopause Premium", "off": false, "spend": 70581, "impr": 1061, "ctr": 1.51, "link": 12, "viewlp": 11, "klikwa": 1, "contact": 1, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "WK1 | T07 Nisa", "off": false, "spend": 69178, "impr": 884, "ctr": 17.19, "link": 140, "viewlp": 82, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 56.6, "hold": 67.6}, {"nm": "IMG02 - KB Emosi", "off": false, "spend": 52540, "impr": 1285, "ctr": 1.87, "link": 9, "viewlp": 9, "klikwa": 2, "contact": 1, "purch": 1, "roas": 18.84, "hook": 0.0, "hold": 0}, {"nm": "IMG06 - Self-Care Kewanitaan", "off": false, "spend": 48703, "impr": 1003, "ctr": 1.0, "link": 9, "viewlp": 8, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG01 - Pasca KB Haid", "off": false, "spend": 42103, "impr": 1020, "ctr": 0.98, "link": 7, "viewlp": 5, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "WK1 | T04 Mega (Off)", "off": true, "spend": 41664, "impr": 537, "ctr": 21.6, "link": 136, "viewlp": 72, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 51.6, "hold": 60.3}, {"nm": "IMG04 - Jangan Salahkan Usia", "off": false, "spend": 34227, "impr": 752, "ctr": 2.93, "link": 17, "viewlp": 13, "klikwa": 3, "contact": 2, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG10 - Safron Premium", "off": false, "spend": 15614, "impr": 407, "ctr": 1.72, "link": 2, "viewlp": 2, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "IMG08 - Timeline 30 Hari", "off": false, "spend": 12443, "impr": 300, "ctr": 0.67, "link": 2, "viewlp": 2, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "WK1 | T06 Tika", "off": false, "spend": 9510, "impr": 209, "ctr": 6.22, "link": 10, "viewlp": 4, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 26.8, "hold": 33.9}, {"nm": "IMG03 - Checklist Gejala", "off": false, "spend": 7044, "impr": 104, "ctr": 0.96, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "NOV-W2-T11-MAYA | 3 Alasan", "off": false, "spend": 5411, "impr": 71, "ctr": 0.0, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 5.6, "hold": 25.0}, {"nm": "NOV-W2-T15-PUTRI | Safron", "off": false, "spend": 5287, "impr": 99, "ctr": 3.03, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 2.0, "hold": 50.0}, {"nm": "NOV-W2-T12-WULAN | Nyaman & PD", "off": false, "spend": 4433, "impr": 281, "ctr": 4.98, "link": 8, "viewlp": 2, "klikwa": 1, "contact": 0, "purch": 0, "roas": 0.0, "hook": 17.8, "hold": 38.0}, {"nm": "IMG07 - Bu Ratna Quote", "off": false, "spend": 3247, "impr": 66, "ctr": 9.09, "link": 2, "viewlp": 2, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0.0, "hold": 0}, {"nm": "NOV-W2-T14-INDAH | Herbal Lambat", "off": false, "spend": 2105, "impr": 63, "ctr": 3.17, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 12.7, "hold": 0.0}, {"nm": "NOV-W2-T13-SARI | Rekomendasi Kakak", "off": false, "spend": 0, "impr": 0, "ctr": 0.0, "link": 0, "viewlp": 0, "klikwa": 0, "contact": 0, "purch": 0, "roas": 0.0, "hook": 0, "hold": 0}]};
+/* DATA-END */
+
+/* ---------- helpers ---------- */
+const $=id=>document.getElementById(id);
+const rp=n=>'Rp'+Math.round(n||0).toLocaleString('id-ID');
+const rpk=n=>{n=n||0;return n>=1e6?'Rp'+(n/1e6).toFixed(1).replace('.',',')+' jt':rp(n);};
+const num=n=>(n||0).toLocaleString('id-ID');
+const pc=n=>(n||0).toFixed(n%1?1:0).replace('.',',')+'%';
+const x=n=>(n||0).toFixed(2).replace('.',',')+'×';
+const div=(a,b)=>b?a/b:0;
+function card(lab,val,meta,cls){return `<div class="card"><div class="lab">${lab}</div><div class="val ${cls||''}">${val}</div>${meta?`<div class="meta">${meta}</div>`:''}</div>`;}
+function delta(now,prev,invert){if(!prev)return '';const d=(now-prev)/prev*100;const up=d>=0;const good=invert?!up:up;return `<span class="${good?'good':'danger'}">${up?'▲':'▼'} ${Math.abs(d).toFixed(0)}% vs kemarin</span>`;}
+function breakdown(title,rows,unit){const tot=rows.reduce((s,r)=>s+r[1],0);let h=`<div class="card"><div class="lab" style="margin-bottom:6px">${title}</div>`;rows.slice(0,7).forEach(r=>{h+=`<div class="brow"><span>${r[0]}</span><span>${pc(div(r[1],tot)*100)}</span></div><div class="bar"><i style="width:${div(r[1],tot)*100}%"></i></div>`;});return h+'</div>';}
+
+const pctOf=(a,b)=>b?(a/b*100).toFixed(1).replace('.',',')+'%':'—';
+function funnelReport(ad){
+  const pv=ad.roas*ad.spend;
+  let h='<div class="frep">';
+  const row=(k,v,p)=>{h+=`<div class="frow"><span class="fk">${k}</span><span class="fv">${v}</span>${p?`<span class="fp">${p}</span>`:''}</div>`;};
+  row('💰 Spend', rpk(ad.spend));
+  row('👁 Impresi', num(ad.impr));
+  row('🔗 Klik Tautan', num(ad.link), pctOf(ad.link,ad.impr)+' dari impresi');
+  row('📄 View LP', num(ad.viewlp), pctOf(ad.viewlp,ad.link)+' dari klik');
+  row('📲 Klik WA', num(ad.klikwa), pctOf(ad.klikwa,ad.viewlp)+' dari View LP');
+  row('💬 Contact', num(ad.contact||0), pctOf(ad.contact||0,ad.klikwa)+' dari Klik WA');
+  row('🧾 Cost/Contact', ad.contact?rp(ad.spend/ad.contact):'—');
+  row('🛒 Purchase', ad.purch+' order · '+rpk(pv));
+  row('📈 ROAS', ad.roas?x(ad.roas)+' '+(ad.roas>=1?'🟢':'🔴'):'—');
+  h+='</div>';
+  return h;
+}
+
+/* ---------- TAB: Hari Ini ---------- */
+function renderNow(){
+  const t=DATA.today,y=DATA.yesterday;
+  const contact=t.contact||0, pv=t.roas*t.spend;
+  let h='<div class="sec">Hari ini ('+DATA.generated_at+') — urut funnel</div><div class="frep">';
+  const row=(k,v,p)=>{h+=`<div class="frow"><span class="fk">${k}</span><span class="fv">${v}</span>${p?`<span class="fp">${p}</span>`:''}</div>`;};
+  row('💰 Spend', rpk(t.spend), delta(t.spend,y.spend,true));
+  row('👁 Impresi', num(t.impr), '');
+  row('📢 Reach', num(t.reach), 'frekuensi '+t.freq.toFixed(2).replace('.',','));
+  row('🔗 Klik Tautan', num(t.link), pctOf(t.link,t.impr)+' dari impresi · CPC '+rp(t.cpc)+' '+delta(t.link,y.link));
+  row('📄 View LP', num(t.viewlp), pctOf(t.viewlp,t.link)+' dari klik');
+  row('📲 Klik WA', num(t.klikwa), pctOf(t.klikwa,t.viewlp)+' dari View LP');
+  row('💬 Contact', num(contact), pctOf(contact,t.klikwa)+' dari Klik WA · '+delta(contact,y.contact||0));
+  row('🧾 Cost/Contact', contact?rp(t.spend/contact):'—','');
+  row('🛒 Purchase', t.purch+' order · '+rpk(pv), delta(t.purch,y.purch));
+  row('📈 ROAS', x(t.roas)+' '+(t.roas>=1?'🟢':'🔴'), 'kemarin '+x(y.roas));
+  h+='</div>';
+  h+='<div class="sec">Campaign — aktif &amp; yang spend hari ini ('+DATA.campaigns_today.length+') <span style="text-transform:none;font-weight:400">· (Off) = dimatikan</span></div><div class="tw"><table><thead><tr><th>Campaign</th><th>Spend</th><th>Impresi</th><th>Klik Link</th><th>CTR</th><th>CPC</th><th>View LP</th><th>Klik WA</th><th>Contact</th><th>Cost/Ctc</th><th>Purchase</th><th>ROAS</th></tr></thead><tbody>';
+  DATA.campaigns_today.forEach(c=>{h+=`<tr${c.off?' style="opacity:.55"':''}><td>${c.name}</td><td>${rp(c.spend)}</td><td>${num(c.impr)}</td><td>${num(c.link)}</td><td>${pc(c.ctr)}</td><td>${rp(c.cpc)}</td><td>${num(c.viewlp||0)}</td><td>${num(c.klikwa||0)}</td><td class="${c.contact?'good':''}">${num(c.contact||0)}</td><td>${c.contact?rp(c.spend/c.contact):'—'}</td><td class="${c.purch?'good':''}">${c.purch||0}</td><td class="${c.roas>=1?'good':''}">${c.roas?x(c.roas):'—'}</td></tr>`;});
+  h+='</tbody></table></div>';
+  const audGrid=a=>{a=a||{};return '<div class="grid k4">'
+    +breakdown('Usia',a.age||[])
+    +breakdown('Gender',a.gender||[])
+    +breakdown('Placement (share spend)',a.placement||[])
+    +breakdown('Wilayah (Provinsi)',a.region||[])
+    +'</div>';};
+  h+='<div class="sec">Siapa yang lihat iklan (Hari Ini)</div>'+audGrid(DATA.aud_today);
+  h+='<div class="sec">Siapa yang lihat iklan (30 hari)</div>'+audGrid(DATA.aud_30d);
+  h+='<div class="note">Usia/Gender/Wilayah dihitung dari impresi; Placement dari spend (biar kelihatan ke mana uang lari).</div>';
+  $('now').innerHTML=h;
+}
+
+/* ---------- TAB: Mingguan & Bulanan ---------- */
+function renderTrend(){
+  const ff=DATA.funnel;
+  let h='<div class="sec">Funnel 28 hari — dari lihat iklan sampai order</div>'+funnelReport({spend:ff.spend,impr:ff.impressions,link:ff.link_clicks,viewlp:ff.viewlp,klikwa:ff.klikwa,contact:ff.contact,purch:ff.purchases,roas:ff.roas});
+  h+='<div class="sec">Tren harian — spend &amp; klik link</div><div class="card"><div class="chartbox"><canvas id="c14"></canvas></div><div class="note" id="c14note"></div></div>';
+  const rows=(lbl,arr)=>{let s=`<div class="sec">${lbl}</div><div class="tw"><table><thead><tr><th>Periode</th><th>Spend</th><th>Klik</th><th>Klik Link</th><th>Purchase</th><th>ROAS</th></tr></thead><tbody>`;
+    arr.forEach(r=>{s+=`<tr><td>${r[0]}</td><td>${rpk(r[1])}</td><td>${num(r[2])}</td><td>${num(r[3])}</td><td>${r[4]}</td><td class="${r[5]>=1?'good':'warn'}">${r[5]?x(r[5]):'—'}</td></tr>`;});
+    return s+'</tbody></table></div>';};
+  h+=rows('Mingguan',DATA.weekly);
+  h+=rows('Bulanan',DATA.monthly);
+  h+='<div class="sec">Catatan</div><div class="card" style="font-size:12.5px;color:var(--mut)">Spend melonjak di Juli (Rp6,6 jt di 4 hari pertama vs Rp2 jt sebulan penuh di Juni) — skala dinaikkan agresif. Tapi <b class="warn">ROAS versi Meta masih di bawah 1×</b> (0,4–0,5), artinya secara tracking belum balik modal. Kalau ada penjualan lewat WA yang tidak ke-track Pixel, angka asli bisa lebih tinggi — perlu dicocokkan dengan catatan penjualan (lihat Action Plan).</div>';
+  $('trend').innerHTML=h;
+  drawChart();
+}
+let chart;
+function drawChart(){
+  if(!window.Chart){$('c14note').textContent='(Grafik butuh internet untuk memuat library Chart.js)';return;}
+  const cs=getComputedStyle(document.body);
+  const pink=cs.getPropertyValue('--pink').trim()||'#E58AB0', blue=cs.getPropertyValue('--blue').trim()||'#6AA6E0', mut=cs.getPropertyValue('--mut').trim(), line=cs.getPropertyValue('--line').trim();
+  const labels=DATA.trend.map(r=>r[0]);
+  if(chart)chart.destroy();
+  chart=new Chart($('c14'),{data:{labels,datasets:[
+    {type:'bar',label:'Klik Link',data:DATA.trend.map(r=>r[2]),backgroundColor:blue,yAxisID:'y1',borderRadius:4},
+    {type:'line',label:'Spend',data:DATA.trend.map(r=>r[1]),borderColor:pink,backgroundColor:pink,tension:.3,yAxisID:'y',pointRadius:2}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:mut,boxWidth:12}}},scales:{
+    y:{position:'left',ticks:{color:mut,callback:v=>'Rp'+(v/1e6)+'jt'},grid:{color:line}},
+    y1:{position:'right',ticks:{color:mut},grid:{drawOnChartArea:false}},
+    x:{ticks:{color:mut,maxRotation:0},grid:{display:false}}}}});
+}
+
+/* ---------- TAB: Follow-up (butuh data penjualan) ---------- */
+function renderFu(){
+  let h='<div class="sec">Follow-up / repurchase</div>';
+  h+='<div class="empty">📋 <b>Belum tersambung.</b><br><br>Tab ini butuh <b>catatan penjualan Novia</b> (nama customer, tanggal beli, produk) — data itu tidak ada di Meta Ads API, jadi harus diisi dari Google Sheet / CRM / WhatsApp.<br><br>Di dashboard teman kamu, bagian ini disuplai script yang baca Google Sheet penjualan. Kalau kamu mau, saya bisa siapkan format Sheet-nya supaya nanti daftar follow-up muncul otomatis di sini (tombol Chat WA per customer, sama seperti punya dia).</div>';
+  $('fu').innerHTML=h;
+}
+
+/* ---------- TAB: Konten ---------- */
+function contentTable(arr){
+  if(!arr.length)return '<div class="empty">Belum ada data di rentang ini.</div>';
+  let s='<div class="tw"><table><thead><tr><th>Konten</th><th>Spend</th><th>Hook</th><th>Hold</th><th>CTR</th><th>Klik Link</th><th>View LP</th><th>Klik WA</th><th>Contact</th><th>Cost/Ctc</th><th>Purchase</th><th>ROAS</th></tr></thead><tbody>';
+  arr.forEach(e=>{s+=`<tr${e.off?' style="opacity:.55"':''}><td>${e.nm}</td><td>${rpk(e.spend)}</td><td class="${e.hook>=45?'good':''}">${pc(e.hook)}</td><td class="${e.hold>=55?'good':''}">${pc(e.hold)}</td><td>${pc(e.ctr)}</td><td>${num(e.link)}</td><td>${num(e.viewlp)}</td><td>${num(e.klikwa)}</td><td class="${e.contact?'good':''}">${num(e.contact||0)}</td><td>${e.contact?rp(e.spend/e.contact):'—'}</td><td class="${e.purch?'good':''}">${e.purch}</td><td class="${e.roas>=1?'good':''}">${e.roas?x(e.roas):'—'}</td></tr>`;});
+  return s+'</tbody></table></div>';
+}
+function contentPane(id,title,arr,withCards){
+  let h='';
+  if(withCards){
+    const live=arr.filter(e=>e.hook>0);
+    const avgHook=live.length?live.reduce((s,e)=>s+e.hook,0)/live.length:0;
+    const avgHold=live.length?live.reduce((s,e)=>s+e.hold,0)/live.length:0;
+    h+='<div class="sec">Ringkasan</div><div class="grid k4">';
+    h+=card('Avg Hook',pc(avgHook),'% nonton lewat 3 detik pertama');
+    h+=card('Avg Hold',pc(avgHold),'% dari yg nonton, lanjut sampai tuntas');
+    h+=card('Ada purchase',num(arr.filter(e=>e.purch>=1).length)+' konten','yang hasilkan order','good');
+    h+=card('Konten tampil',num(arr.length),num(arr.filter(e=>!e.off).length)+' aktif · '+num(arr.filter(e=>e.off).length)+' off');
+    h+='</div>';
+  }
+  h+='<div class="sec">'+title+'</div>'+contentTable(arr);
+  h+='<div class="note">Hook = % impresi yang nonton 3 detik pertama. Hold = % penonton yang lanjut sampai selesai. (Off) = iklan dimatikan tapi sempat jalan di rentang ini.</div>';
+  $(id).innerHTML=h;
+}
+function renderCtHari(){ contentPane('cthari','⏱ Konten Hari Ini — data per '+DATA.generated_at, DATA.content_today||[], true); }
+function renderCtBulan(){ contentPane('ctbulan','📅 Konten Bulan Ini — tanggal 1 s/d sekarang', DATA.content_month||DATA.content||[], true); }
+
+function wilTable(arr){
+  if(!arr.length)return '<div class="empty">Belum ada provinsi dengan spend di rentang ini.</div>';
+  const tot=arr.reduce((s,e)=>s+e.spend,0);
+  let s='<div class="tw"><table><thead><tr><th>Provinsi</th><th>Spending</th><th>% Spend</th><th>Klik Link</th><th>CPC</th></tr></thead><tbody>';
+  arr.forEach(e=>{s+=`<tr><td>${e.prov}</td><td>${rp(e.spend)}</td><td>${pctOf(e.spend,tot)}</td><td>${num(e.link||0)}</td><td>${e.link?rp(e.spend/e.link):'—'}</td></tr>`;});
+  return s+'</tbody></table></div>';
+}
+function renderWil(){
+  let h='<div class="exec" style="background:rgba(233,169,76,.12);border-color:rgba(233,169,76,.35)">⚠ Meta hanya membagi <b>spend</b> per wilayah. <b>Contact, Purchase &amp; ROAS tidak bisa dipecah per lokasi</b> (cuma ada di level akun), jadi tabel ini fokus ke sebaran spend.</div>';
+  h+='<div class="sec">⏱ Per Provinsi — Hari Ini (per '+DATA.generated_at+') · '+(DATA.region_today||[]).length+' provinsi</div>'+wilTable(DATA.region_today||[]);
+  h+='<div class="sec">📅 Per Provinsi — Bulan Ini (tgl 1 s/d sekarang) · '+(DATA.region_month||[]).length+' provinsi</div>'+wilTable(DATA.region_month||[]);
+  h+='<div class="note">Data per-kota tidak tersedia di Meta API (level terhalus = provinsi). Hanya provinsi dengan spend &gt; 0 yang tampil, urut dari spend terbesar.</div>';
+  $('wil').innerHTML=h;
+}
+
+/* ---------- TAB: Action Plan ---------- */
+function renderOpt(){
+  const f=DATA.funnel;
+  const anShare=(3174679+1009591)/f.spend*100;
+  let h='<div class="exec"><b>Ringkasan:</b> 30 hari terakhir habis '+rpk(f.spend)+' dengan ROAS Meta '+x(f.roas)+' (di bawah 1× — secara tracking belum balik modal) dan hanya '+f.purchases+' purchase ke-track. Dua hal paling mendesak: (1) '+anShare.toFixed(0)+'% budget lari ke Audience Network yang niat-belinya rendah, (2) tracking Purchase kemungkinan bocor.</div>';
+  h+='<div class="sec">Prioritas — kerjain dari atas</div>';
+  const opts=[
+    {p:'P0',a:'Placement',ac:'#E24B4A',t:'Hampir separuh budget ke Audience Network',m:'Rp3,17 jt ke <b>rewarded video</b> + Rp1,01 jt ke <b>AN classic</b> = ~'+anShare.toFixed(0)+'% dari total spend. Rewarded video = orang nonton demi hadiah game, bukan calon pembeli.',s:'Matikan / kecilkan placement Audience Network. Alihkan budget ke Facebook Reels, Instagram Reels, dan Feed yang jelas ada engagement.',e:'Hemat ~Rp4 jt/bln yang bisa dialihkan ke placement berkualitas → CPA turun.'},
+    {p:'P0',a:'Tracking',ac:'#E24B4A',t:'Purchase under-report (cuma 3 ke-track)',m:'Spend Rp8,6 jt tapi Meta cuma lihat 3 purchase (ROAS 0,44). Kalau penjualan asli lewat WA lebih banyak, ROAS sebenarnya bisa jauh lebih tinggi.',s:'Cocokkan jumlah order asli (dari catatan penjualan/WA) vs yang ke-track Pixel. Kalau timpang → pasang/rapikan CAPI Purchase server-side.',e:'Angka ROAS jadi jujur + bidding Meta dapat sinyal → makin akurat.'},
+    {p:'P1',a:'Creative',ac:'#1D9E75',t:'Scale pemenang: T05 Bu Yuli & T10 Citra',m:'T05 Bu Yuli = 2 purchase (satu-satunya yg closing). T10 Citra = hook 61%, hold 60%, 10.122 klik link — engagement tertinggi.',s:'Naikkan budget bertahap (+20–30%/2hr) di dua konten ini. Buat turunan/variasi dari angle yg sama.',e:'Dobelkan hasil di materi yang sudah terbukti kerja.'},
+    {p:'P1',a:'Creative',ac:'#EF9F27',t:'Hook bagus tapi 0 closing (T03, T02)',m:'T03 Dinda (hook 57%) & T02 Rani (hook 58%) menarik perhatian tinggi tapi belum ada purchase.',s:'Materi oke — cek langkah setelah klik: landing page, harga, penawaran, kecepatan balas admin.',e:'Ubah perhatian jadi penjualan tanpa nambah biaya iklan.'}
+  ];
+  opts.forEach(o=>{const cls=o.p==='P0'?'opt p0':'opt p1';h+=`<div class="${cls}" style="border-left-color:${o.ac}"><div class="ohd"><span class="pill" style="background:${o.ac}22;color:${o.ac}">${o.p}</span><span class="pill" style="background:var(--surface2);color:var(--mut)">${o.a}</span><span class="ot">${o.t}</span></div><div class="orow"><span class="k">Masalah</span><span>${o.m}</span></div><div class="orow"><span class="k">Solusi</span><span>${o.s}</span></div>${o.e?`<div class="eff">📈 ${o.e}</div>`:''}</div>`;});
+  h+='<div class="sec">Funnel — 30 hari</div><div class="card">';
+  const steps=[['Impresi',f.impressions],['Reach',f.reach],['Klik',f.clicks],['Klik Link',f.link_clicks],['Purchase',f.purchases]];
+  const cols=['#6AA6E0','#5AA9C9','#D9B26A','#E58AB0','#3FB98A'];
+  const max=steps[0][1];h+='<div class="funl">';
+  steps.forEach((s,i)=>{const w=Math.max(8,div(s[1],max)*100);const drop=i?100-div(s[1],steps[i-1][1])*100:0;h+=`<div class="fstep"><div class="fbar" style="background:${cols[i]};width:${w}%">${s[0]}: ${num(s[1])}</div>${i?`<span class="fdrop">−${drop.toFixed(0)}%</span>`:''}</div>`;});
+  h+='</div><div class="note">Impresi ke klik sudah bagus (CTR '+pc(f.ctr)+'), tapi klik link → purchase jatuh drastis (18.115 → 3). Itu gabungan dari (a) tracking bocor dan (b) closing/penawaran. Target P0.</div></div>';
+  h+='<div class="sec">Belum tersambung di versi ini</div><div class="empty" style="text-align:left">Bagian yang di dashboard teman kamu ada tapi <b>butuh sumber di luar Meta Ads API</b>: <br>• <b>ROAS asli vs tracked</b> &amp; daftar follow-up → dari catatan penjualan (Google Sheet)<br>• <b>CAPI health</b> &amp; <b>perilaku Landing Page</b> → dari Pixel/CAPI &amp; analytics LP<br><br>Kalau mau, saya bantu siapkan sumber-sumber ini supaya dashboard-nya selengkap punya dia.</div>';
+  $('opt').innerHTML=h;
+}
+
+/* ---------- init ---------- */
+$('genat').textContent=DATA.generated_at; $('win').textContent=DATA.window;
+renderNow();
+let built={now:1};
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.pane').forEach(x=>x.classList.add('hide'));
+  b.classList.add('active');const t=b.dataset.t;$(t).classList.remove('hide');
+  if(!built[t]){({trend:renderTrend,fu:renderFu,cthari:renderCtHari,ctbulan:renderCtBulan,wil:renderWil,opt:renderOpt})[t]?.();built[t]=1;}
+  else if(t==='trend')drawChart();
+}));
+$('tgl').addEventListener('click',()=>{document.body.classList.toggle('light');const l=document.body.classList.contains('light');$('tgl').textContent=l?'🌙 Mode Gelap':'☀︎ Mode Terang';if(!$('trend').classList.contains('hide'))drawChart();});
+</script>
+</body></html>
