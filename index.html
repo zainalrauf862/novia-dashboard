@@ -266,6 +266,8 @@ function renderOpt(){
 /* ---------- init ---------- */
 $('genat').textContent=DATA.generated_at; $('win').textContent=DATA.window;
 $('rld').addEventListener('click',()=>{location.href=location.pathname+'?t='+Date.now();});
+/* auto-muat halaman tiap 10 menit (bypass cache) — di HP tak perlu klik apa-apa */
+setTimeout(()=>{location.replace(location.pathname+'?t='+Date.now());}, 600000);
 renderNow();
 let built={now:1};
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{

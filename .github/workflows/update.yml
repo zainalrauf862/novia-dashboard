@@ -2,7 +2,7 @@ name: Update Novia Dashboard
 
 on:
   schedule:
-    - cron: '*/30 * * * *'   # otomatis tiap 30 menit
+    - cron: '*/10 * * * *'   # otomatis tiap 10 menit (best-effort GitHub)
   workflow_dispatch:          # tombol "Run workflow" buat update instan
 
 permissions:
