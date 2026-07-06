@@ -231,7 +231,7 @@ def build():
     print("• menarik konten bulan ini & hari ini ...")
     METR = "{spend,impressions,ctr,inline_link_clicks,actions,purchase_roas,video_thruplay_watched_actions}"
     try:
-        ares = api(f"act_{AD_ACCOUNT}/ads", effective_status='["ACTIVE","PAUSED"]', limit=200,
+        ares = api(f"act_{AD_ACCOUNT}/ads", effective_status='["ACTIVE","PAUSED"]', limit=500,
                    fields="name,effective_status,"
                           f"insights.date_preset(this_month).as(bln){METR},"
                           f"insights.date_preset(today).as(hri){METR}")
@@ -260,8 +260,8 @@ def build():
         if i(ins_h, "spend") > 0 or not off:
             today_list.append(content_item(a, ins_h, off))
     month_list.sort(key=lambda r: -r["spend"]); today_list.sort(key=lambda r: -r["spend"])
-    d["content_month"] = month_list[:30]
-    d["content_today"] = today_list[:30]
+    d["content_month"] = month_list              # tampilkan semua (tanpa batas 30)
+    d["content_today"] = today_list
     d["content"] = d["content_month"]             # kompatibilitas lama
 
     return d
