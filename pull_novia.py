@@ -92,8 +92,14 @@ def action_list(row, key, *types):
 def links(row):   return i(row, "inline_link_clicks") or action(row, "link_click")
 def purch(row):   return action(row, "omni_purchase", "purchase", "offsite_conversion.fb_pixel_purchase")
 def roas(row):    return round(action_list(row, "purchase_roas", "omni_purchase", "purchase"), 2)
+def purval(row):
+    # nilai purchase (value) dari Meta = action_values omni_purchase
+    for a in (row.get("action_values") or []):
+        if a.get("action_type") in ("omni_purchase", "purchase", "offsite_conversion.fb_pixel_purchase"):
+            return int(round(float(a.get("value", 0))))
+    return 0
 
-CORE = "spend,impressions,reach,clicks,ctr,cpc,cpm,frequency,inline_link_clicks,actions,purchase_roas"
+CORE = "spend,impressions,reach,clicks,ctr,cpc,cpm,frequency,inline_link_clicks,actions,purchase_roas,action_values"
 
 def viewlp(r): return action(r, "landing_page_view", "omni_landing_page_view")
 def klikwa(r): return action(r, "add_to_cart", "offsite_conversion.fb_pixel_add_to_cart", "onsite_web_add_to_cart")
@@ -107,7 +113,7 @@ def core_row(r):
             "clicks":i(r,"clicks"),"ctr":round(f(r,"ctr"),2),"cpc":i(r,"cpc"),
             "cpm":i(r,"cpm"),"freq":round(f(r,"frequency"),2),
             "link":links(r),"viewlp":viewlp(r),"klikwa":klikwa(r),
-            "contact":contact(r),"purch":purch(r),"roas":roas(r)}
+            "contact":contact(r),"purch":purch(r),"roas":roas(r),"purval":purval(r)}
 
 def brk(field, val_key="impressions", preset="last_30d"):
     try:
@@ -181,7 +187,7 @@ def build():
                    "clicks":i(fr,"clicks"),"link_clicks":links(fr),"viewlp":viewlp(fr),
                    "klikwa":klikwa(fr),"contact":contact(fr),"purchases":purch(fr),
                    "ctr":round(f(fr,"ctr"),2),"cpc":i(fr,"cpc"),"cpm":i(fr,"cpm"),
-                   "frequency":round(f(fr,"frequency"),2),"roas":roas(fr)}
+                   "frequency":round(f(fr,"frequency"),2),"roas":roas(fr),"purval":purval(fr)}
 
     print("• menarik demografi, placement & wilayah (hari ini + 30 hari) ...")
     PLAT = {"facebook":"Facebook","instagram":"Instagram","audience_network":"Audience Network",
