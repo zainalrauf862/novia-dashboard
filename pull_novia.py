@@ -155,7 +155,7 @@ def build():
                          "viewlp": viewlp(ins), "klikwa": klikwa(ins), "contact": contact(ins),
                          "purch": purch(ins), "roas": roas(ins)})
         rows.sort(key=lambda r: -r["spend"])
-        return rows[:25]
+        return rows          # tampilkan semua (tanpa batas 25)
     d["campaigns_today"]     = build_camps("hri", True)
     d["campaigns_yesterday"] = build_camps("kmr", False)
 
