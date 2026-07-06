@@ -131,25 +131,33 @@ def build():
         "yesterday": core_row(yday[0])  if yday  else core_row({}),
     }
 
-    print("• menarik campaign yang spend hari ini (+ status) ...")
+    print("• menarik campaign hari ini & kemarin (+ status) ...")
+    CMET = "{spend,impressions,clicks,ctr,cpc,inline_link_clicks,actions,purchase_roas}"
     cres = api(f"act_{AD_ACCOUNT}/campaigns", effective_status='["ACTIVE","PAUSED"]', limit=300,
-               fields="name,effective_status,insights.date_preset(today)"
-                      "{spend,impressions,clicks,ctr,cpc,inline_link_clicks,actions,purchase_roas}")
-    camps = []
-    for c in cres.get("data", []):
-        arr = (c.get("insights", {}) or {}).get("data") or []
-        ins = arr[0] if arr else {}
-        sp = i(ins, "spend")
-        off = c.get("effective_status") != "ACTIVE"
-        if sp <= 0 and off:               # sembunyikan HANYA yg tidak aktif DAN tanpa spend
-            continue
-        camps.append({"name": c.get("name", "?") + (" (Off)" if off else ""), "off": off,
-                      "spend": sp, "impr": i(ins, "impressions"), "clicks": i(ins, "clicks"),
-                      "ctr": round(f(ins, "ctr"), 2), "cpc": i(ins, "cpc"), "link": links(ins),
-                      "viewlp": viewlp(ins), "klikwa": klikwa(ins), "contact": contact(ins),
-                      "purch": purch(ins), "roas": roas(ins)})
-    camps.sort(key=lambda r: -r["spend"])
-    d["campaigns_today"] = camps[:25]
+               fields=f"name,effective_status,insights.date_preset(today).as(hri){CMET},"
+                      f"insights.date_preset(yesterday).as(kmr){CMET}")
+    def build_camps(key, today_mode):
+        rows = []
+        for c in cres.get("data", []):
+            arr = (c.get(key, {}) or {}).get("data") or []
+            ins = arr[0] if arr else {}
+            sp = i(ins, "spend")
+            off = c.get("effective_status") != "ACTIVE"
+            if today_mode:
+                if sp <= 0 and off:        # hari ini: sembunyikan hanya (mati & tanpa spend)
+                    continue
+            else:
+                if sp <= 0:                # kemarin: hanya yang benar-benar spend kemarin
+                    continue
+            rows.append({"name": c.get("name", "?") + (" (Off)" if off else ""), "off": off,
+                         "spend": sp, "impr": i(ins, "impressions"), "clicks": i(ins, "clicks"),
+                         "ctr": round(f(ins, "ctr"), 2), "cpc": i(ins, "cpc"), "link": links(ins),
+                         "viewlp": viewlp(ins), "klikwa": klikwa(ins), "contact": contact(ins),
+                         "purch": purch(ins), "roas": roas(ins)})
+        rows.sort(key=lambda r: -r["spend"])
+        return rows[:25]
+    d["campaigns_today"]     = build_camps("hri", True)
+    d["campaigns_yesterday"] = build_camps("kmr", False)
 
     print("• menarik tren harian ...")
     tr = insights(level="account", date_preset="last_14d", time_increment="1",
@@ -196,8 +204,9 @@ def build():
                 "gender":    [[GEN.get(g,g.title()), v] for g,v in brk("gender", "impressions", preset)],
                 "placement": [[PLAT.get(p,p.title()), v] for p,v in brk("publisher_platform", "spend", preset)],
                 "region":    [[regnm(r), v] for r, v in brk("region", "impressions", preset)]}
-    d["aud_today"] = audience("today")
-    d["aud_30d"]   = audience("last_30d")
+    d["aud_today"]     = audience("today")
+    d["aud_yesterday"] = audience("yesterday")
+    d["aud_30d"]       = audience("last_30d")
 
     print("• menarik insight per wilayah/provinsi (bulan ini + hari ini) ...")
     def region_metrics(preset):
