@@ -51,6 +51,18 @@ def api(path, **params):
         raise RuntimeError(f"❌ Meta menolak permintaan (HTTP {e.code}).\n   {body}\n"
                            "   Kemungkinan: token salah/kadaluarsa, atau izin/akun iklan belum tersambung.")
 
+def api_all(path, **params):
+    """Ambil SEMUA data (ikuti halaman berikutnya) — tanpa batas jumlah."""
+    res = api(path, **params)
+    out = list(res.get("data", []))
+    guard = 0
+    while res.get("paging", {}).get("next") and guard < 50:
+        guard += 1
+        with urllib.request.urlopen(res["paging"]["next"], timeout=90) as r:
+            res = json.load(r)
+        out += res.get("data", [])
+    return out
+
 def insights(**params):
     """Ambil semua baris insights (ikuti halaman berikutnya bila ada)."""
     rows, res = [], api(f"act_{AD_ACCOUNT}/insights", **params)
@@ -139,12 +151,12 @@ def build():
 
     print("• menarik campaign hari ini & kemarin (+ status) ...")
     CMET = "{spend,impressions,clicks,ctr,cpc,inline_link_clicks,actions,purchase_roas}"
-    cres = api(f"act_{AD_ACCOUNT}/campaigns", effective_status='["ACTIVE","PAUSED"]', limit=300,
+    cres = api_all(f"act_{AD_ACCOUNT}/campaigns", effective_status='["ACTIVE","PAUSED"]', limit=200,
                fields=f"name,effective_status,insights.date_preset(today).as(hri){CMET},"
                       f"insights.date_preset(yesterday).as(kmr){CMET}")
     def build_camps(key, today_mode):
         rows = []
-        for c in cres.get("data", []):
+        for c in cres:
             arr = (c.get(key, {}) or {}).get("data") or []
             ins = arr[0] if arr else {}
             sp = i(ins, "spend")
@@ -237,11 +249,10 @@ def build():
     print("• menarik konten bulan ini & hari ini ...")
     METR = "{spend,impressions,ctr,inline_link_clicks,actions,purchase_roas,video_thruplay_watched_actions}"
     try:
-        ares = api(f"act_{AD_ACCOUNT}/ads", effective_status='["ACTIVE","PAUSED"]', limit=500,
+        adlist = api_all(f"act_{AD_ACCOUNT}/ads", effective_status='["ACTIVE","PAUSED"]', limit=200,
                    fields="name,effective_status,"
                           f"insights.date_preset(this_month).as(bln){METR},"
                           f"insights.date_preset(today).as(hri){METR}")
-        adlist = ares.get("data", [])
     except Exception as e:
         print(f"  ⚠ lewati konten ({e})"); adlist = []
 
