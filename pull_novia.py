@@ -249,7 +249,7 @@ def build():
     print("• menarik konten bulan ini & hari ini ...")
     METR = "{spend,impressions,ctr,inline_link_clicks,actions,purchase_roas,video_thruplay_watched_actions}"
     try:
-        adlist = api_all(f"act_{AD_ACCOUNT}/ads", effective_status='["ACTIVE","PAUSED"]', limit=200,
+        adlist = api_all(f"act_{AD_ACCOUNT}/ads", effective_status='["ACTIVE","PAUSED","CAMPAIGN_PAUSED","ADSET_PAUSED"]', limit=200,
                    fields="name,effective_status,"
                           f"insights.date_preset(this_month).as(bln){METR},"
                           f"insights.date_preset(today).as(hri){METR}")
