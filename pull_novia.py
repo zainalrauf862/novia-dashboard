@@ -20,6 +20,13 @@ BASE       = f"https://graph.facebook.com/{API_VER}"
 HERE       = os.path.dirname(os.path.abspath(__file__))
 HTML_FILE  = os.path.join(HERE, "novia-dashboard.html")
 DATA_JSON  = os.path.join(HERE, "data.json")
+HEAVY_FILE = os.path.join(HERE, ".heavy_cache.json")   # cache data berat (demografi/mingguan/wilayah)
+
+def load_heavy():
+    try:
+        return json.load(open(HEAVY_FILE, encoding="utf-8"))
+    except Exception:
+        return {}
 
 BULAN = {"01":"Januari","02":"Februari","03":"Maret","04":"April","05":"Mei","06":"Juni",
          "07":"Juli","08":"Agustus","09":"September","10":"Oktober","11":"November","12":"Desember"}
@@ -139,6 +146,11 @@ def brk(field, val_key="impressions", preset="last_30d"):
 
 # ---------- bangun DATA ----------
 def build():
+    heavy_cache = load_heavy()
+    now_ts = int(datetime.now().timestamp())
+    # tarik data berat (demografi/mingguan/wilayah) sekali per ~jam saja; sisanya pakai cache
+    do_heavy = (now_ts - heavy_cache.get("_ts", 0) > 55 * 60) or ("aud_30d" not in heavy_cache)
+
     print("• menarik ringkasan hari ini & kemarin ...")
     today = insights(level="account", date_preset="today", fields=CORE)
     yday  = insights(level="account", date_preset="yesterday", fields=CORE)
@@ -177,21 +189,6 @@ def build():
     d["campaigns_today"]     = build_camps("hri", True)
     d["campaigns_yesterday"] = build_camps("kmr", False)
 
-    print("• menarik tren harian ...")
-    tr = insights(level="account", date_preset="last_14d", time_increment="1",
-                  fields="spend,inline_link_clicks,actions")
-    d["trend"] = [[r.get("date_start","")[5:], i(r,"spend"), links(r), purch(r)] for r in tr]
-
-    print("• menarik rekap mingguan & bulanan ...")
-    wk = insights(level="account", date_preset="last_30d", time_increment="7",
-                  fields="spend,clicks,inline_link_clicks,actions,purchase_roas")
-    d["weekly"] = [[f"{r.get('date_start','')[5:]}→{r.get('date_stop','')[5:]}", i(r,"spend"),
-                    i(r,"clicks"), links(r), purch(r), roas(r)] for r in wk]
-    mo = insights(level="account", date_preset="last_90d", time_increment="monthly",
-                  fields="spend,clicks,inline_link_clicks,actions,purchase_roas")
-    d["monthly"] = [[BULAN.get(r.get('date_start','')[5:7], r.get('date_start','')), i(r,"spend"),
-                     i(r,"clicks"), links(r), purch(r), roas(r)] for r in mo]
-
     print("• menarik funnel 30 hari ...")
     fn = insights(level="account", date_preset="last_30d", fields=CORE)
     fr = fn[0] if fn else {}
@@ -200,51 +197,6 @@ def build():
                    "klikwa":klikwa(fr),"contact":contact(fr),"purchases":purch(fr),
                    "ctr":round(f(fr,"ctr"),2),"cpc":i(fr,"cpc"),"cpm":i(fr,"cpm"),
                    "frequency":round(f(fr,"frequency"),2),"roas":roas(fr),"purval":purval(fr)}
-
-    print("• menarik demografi, placement & wilayah (hari ini + 30 hari) ...")
-    PLAT = {"facebook":"Facebook","instagram":"Instagram","audience_network":"Audience Network",
-            "messenger":"Messenger","unknown":"Lainnya"}
-    GEN  = {"female":"Perempuan","male":"Laki-laki","unknown":"Tidak diketahui"}
-    REG  = {"West Java":"Jawa Barat","East Java":"Jawa Timur","Central Java":"Jawa Tengah",
-            "North Sumatra":"Sumatera Utara","West Sumatra":"Sumatera Barat","South Sumatra":"Sumatera Selatan",
-            "East Nusa Tenggara":"NTT","West Nusa Tenggara":"NTB","West Papua":"Papua Barat",
-            "North Maluku":"Maluku Utara","South Sulawesi":"Sulawesi Selatan","North Sulawesi":"Sulawesi Utara",
-            "Central Sulawesi":"Sulawesi Tengah","Southeast Sulawesi":"Sulawesi Tenggara","West Sulawesi":"Sulawesi Barat",
-            "West Kalimantan":"Kalimantan Barat","East Kalimantan":"Kalimantan Timur","South Kalimantan":"Kalimantan Selatan",
-            "Central Kalimantan":"Kalimantan Tengah","North Kalimantan":"Kalimantan Utara",
-            "Special Region of Yogyakarta":"DI Yogyakarta","Riau Islands":"Kepulauan Riau",
-            "Bangka Belitung Islands":"Bangka Belitung"}
-    def regnm(s):
-        s = s.replace(" (province)", "").strip()
-        return REG.get(s, s)
-    def audience(preset):
-        return {"age":       brk("age", "impressions", preset),
-                "gender":    [[GEN.get(g,g.title()), v] for g,v in brk("gender", "impressions", preset)],
-                "placement": [[PLAT.get(p,p.title()), v] for p,v in brk("publisher_platform", "spend", preset)],
-                "region":    [[regnm(r), v] for r, v in brk("region", "impressions", preset)]}
-    d["aud_today"]     = audience("today")
-    d["aud_yesterday"] = audience("yesterday")
-    d["aud_30d"]       = audience("last_30d")
-
-    print("• menarik insight per wilayah/provinsi (bulan ini + hari ini) ...")
-    def region_metrics(preset):
-        # Catatan Meta: breakdown region HANYA kasih spend + aksi on-platform.
-        # Contact/Purchase/ROAS (event pixel) TIDAK di-attribute per wilayah → tak bisa ditampilkan.
-        try:
-            rows = insights(level="account", date_preset=preset, breakdowns="region",
-                            fields="spend,inline_link_clicks,actions")
-        except Exception as e:
-            print(f"  ⚠ lewati wilayah {preset} ({e})"); return []
-        out = []
-        for r in rows:
-            sp = i(r, "spend")
-            if sp <= 0:                    # sembunyikan provinsi tanpa spend
-                continue
-            out.append({"prov": regnm(str(r.get("region", "?"))), "spend": sp, "link": links(r)})
-        out.sort(key=lambda x: -x["spend"])
-        return out
-    d["region_month"] = region_metrics("this_month")
-    d["region_today"] = region_metrics("today")
 
     print("• menarik konten bulan ini & hari ini ...")
     METR = "{spend,impressions,ctr,inline_link_clicks,actions,purchase_roas,video_thruplay_watched_actions}"
@@ -280,6 +232,76 @@ def build():
     d["content_month"] = month_list              # tampilkan semua (tanpa batas 30)
     d["content_today"] = today_list
     d["content"] = d["content_month"]             # kompatibilitas lama
+
+    # ===== DATA BERAT (tren, mingguan/bulanan, demografi, wilayah) =====
+    # Ini jarang berubah, jadi ditarik sekali per ~jam saja biar hemat permintaan ke Meta.
+    HKEYS = ["trend","weekly","monthly","aud_today","aud_yesterday","aud_30d","region_month","region_today"]
+    if do_heavy:
+        print("• [per jam] menarik tren, mingguan/bulanan, demografi, wilayah ...")
+        tr = insights(level="account", date_preset="last_14d", time_increment="1",
+                      fields="spend,inline_link_clicks,actions")
+        d["trend"] = [[r.get("date_start","")[5:], i(r,"spend"), links(r), purch(r)] for r in tr]
+
+        wk = insights(level="account", date_preset="last_30d", time_increment="7",
+                      fields="spend,clicks,inline_link_clicks,actions,purchase_roas")
+        d["weekly"] = [[f"{r.get('date_start','')[5:]}→{r.get('date_stop','')[5:]}", i(r,"spend"),
+                        i(r,"clicks"), links(r), purch(r), roas(r)] for r in wk]
+        mo = insights(level="account", date_preset="last_90d", time_increment="monthly",
+                      fields="spend,clicks,inline_link_clicks,actions,purchase_roas")
+        d["monthly"] = [[BULAN.get(r.get('date_start','')[5:7], r.get('date_start','')), i(r,"spend"),
+                         i(r,"clicks"), links(r), purch(r), roas(r)] for r in mo]
+
+        PLAT = {"facebook":"Facebook","instagram":"Instagram","audience_network":"Audience Network",
+                "messenger":"Messenger","unknown":"Lainnya"}
+        GEN  = {"female":"Perempuan","male":"Laki-laki","unknown":"Tidak diketahui"}
+        REG  = {"West Java":"Jawa Barat","East Java":"Jawa Timur","Central Java":"Jawa Tengah",
+                "North Sumatra":"Sumatera Utara","West Sumatra":"Sumatera Barat","South Sumatra":"Sumatera Selatan",
+                "East Nusa Tenggara":"NTT","West Nusa Tenggara":"NTB","West Papua":"Papua Barat",
+                "North Maluku":"Maluku Utara","South Sulawesi":"Sulawesi Selatan","North Sulawesi":"Sulawesi Utara",
+                "Central Sulawesi":"Sulawesi Tengah","Southeast Sulawesi":"Sulawesi Tenggara","West Sulawesi":"Sulawesi Barat",
+                "West Kalimantan":"Kalimantan Barat","East Kalimantan":"Kalimantan Timur","South Kalimantan":"Kalimantan Selatan",
+                "Central Kalimantan":"Kalimantan Tengah","North Kalimantan":"Kalimantan Utara",
+                "Special Region of Yogyakarta":"DI Yogyakarta","Riau Islands":"Kepulauan Riau",
+                "Bangka Belitung Islands":"Bangka Belitung"}
+        def regnm(s):
+            s = s.replace(" (province)", "").strip()
+            return REG.get(s, s)
+        def audience(preset):
+            return {"age":       brk("age", "impressions", preset),
+                    "gender":    [[GEN.get(g,g.title()), v] for g,v in brk("gender", "impressions", preset)],
+                    "placement": [[PLAT.get(p,p.title()), v] for p,v in brk("publisher_platform", "spend", preset)],
+                    "region":    [[regnm(r), v] for r, v in brk("region", "impressions", preset)]}
+        d["aud_today"]     = audience("today")
+        d["aud_yesterday"] = audience("yesterday")
+        d["aud_30d"]       = audience("last_30d")
+
+        def region_metrics(preset):
+            try:
+                rows = insights(level="account", date_preset=preset, breakdowns="region",
+                                fields="spend,inline_link_clicks,actions")
+            except Exception as e:
+                print(f"  ⚠ lewati wilayah {preset} ({e})"); return []
+            out = []
+            for r in rows:
+                sp = i(r, "spend")
+                if sp <= 0:
+                    continue
+                out.append({"prov": regnm(str(r.get("region", "?"))), "spend": sp, "link": links(r)})
+            out.sort(key=lambda x: -x["spend"])
+            return out
+        d["region_month"] = region_metrics("this_month")
+        d["region_today"] = region_metrics("today")
+
+        cache = {k: d.get(k) for k in HKEYS}
+        cache["_ts"] = now_ts
+        try:
+            json.dump(cache, open(HEAVY_FILE, "w", encoding="utf-8"), ensure_ascii=False)
+        except Exception as e:
+            print(f"  ⚠ gagal simpan cache berat ({e})")
+    else:
+        print("• [hemat] pakai data berat dari cache (demografi/mingguan/wilayah update tiap jam) ...")
+        for k in HKEYS:
+            d[k] = heavy_cache.get(k, {} if k.startswith("aud_") else [])
 
     return d
 

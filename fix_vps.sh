@@ -8,11 +8,11 @@ git reset -q --hard origin/main 2>&1 | tail -1
 echo "kode: OK"
 
 echo
-echo "=== 2) Pasang auto-update: cron akan ambil kode + data tiap 30 menit ==="
+echo "=== 2) Pasang auto-update: cron akan ambil kode + data tiap 15 menit ==="
 cat > /etc/cron.d/novia <<'CRON'
 SHELL=/bin/bash
 TZ=Asia/Jakarta
-*/30 * * * * root cd /opt/novia && git fetch -q origin && git reset -q --hard origin/main && /usr/bin/python3 pull_novia.py >/opt/novia/pull.log 2>&1 && cp -f /opt/novia/novia-dashboard.html /opt/novia/index.html
+*/15 * * * * root cd /opt/novia && git fetch -q origin && git reset -q --hard origin/main && /usr/bin/python3 pull_novia.py >/opt/novia/pull.log 2>&1 && cp -f /opt/novia/novia-dashboard.html /opt/novia/index.html
 CRON
 chmod 644 /etc/cron.d/novia
 systemctl restart cron
@@ -28,5 +28,5 @@ echo "=== 4) Hasil ==="
 python3 -c "import json;d=json.load(open('data.json'));print('  Campaign hari ini:',len(d.get('campaigns_today',[])),'| kemarin:',len(d.get('campaigns_yesterday',[])));print('  Konten bulan ini:',len(d.get('content_month',[])),'| hari ini:',len(d.get('content_today',[])));print('  Data per:',d.get('generated_at'))" 2>&1
 
 echo
-echo "=== SELESAI. Mulai sekarang update kode OTOMATIS tiap 30 menit. ==="
+echo "=== SELESAI. Mulai sekarang update kode OTOMATIS tiap 15 menit. ==="
 echo "Refresh: https://dash-adszainal.tech"
