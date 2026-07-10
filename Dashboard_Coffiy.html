@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dashboard Coffiy — Jan–Jul 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0a0a;color:#e8e4d8;min-height:100vh}
+.header{background:linear-gradient(135deg,#1a1008,#2a1a0a);padding:28px 24px 20px;border-bottom:1px solid #3a2010}
+.header h1{font-size:20px;font-weight:700;color:#C9A227;letter-spacing:1px}
+.header p{color:#888;font-size:13px;margin-top:5px}
+.wrap{max-width:1300px;margin:0 auto;padding:24px 20px}
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:24px}
+.card{background:#161208;border:1px solid #2a1f0a;border-radius:10px;padding:18px 14px;text-align:center}
+.card .v{font-size:26px;font-weight:700;color:#C9A227}
+.card .l{font-size:11px;color:#777;margin-top:4px}
+.card .s{font-size:10px;color:#444;margin-top:2px}
+/* Charts grid */
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px}
+@media(max-width:680px){.charts{grid-template-columns:1fr}}
+.cbox{background:#161208;border:1px solid #2a1f0a;border-radius:10px;padding:18px}
+.cbox h3{font-size:13px;font-weight:600;color:#C9A227;margin-bottom:14px}
+/* CSS chart */
+.css-chart{display:flex;flex-direction:column;gap:7px}
+.bar-row{display:flex;align-items:center;gap:8px}
+.bar-label{font-size:12px;color:#ccc;width:145px;min-width:145px;text-align:right;line-height:1.3}
+.bar-track{flex:1;display:flex;align-items:center;gap:8px;height:20px}
+.bar-fill{height:16px;background:#C9A227;border-radius:3px;min-width:3px;transition:width .3s}
+.bar-val{font-size:12px;color:#888;white-space:nowrap}
+/* Section */
+.sec{background:#161208;border:1px solid #2a1f0a;border-radius:10px;padding:18px;margin-bottom:18px}
+.sec h3{font-size:13px;font-weight:600;color:#C9A227;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.badge{background:#2a1f0a;color:#C9A227;border-radius:20px;padding:2px 9px;font-size:11px}
+/* Filter bar */
+.fb{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.fb input,.fb select{background:#0f0d07;border:1px solid #3a2810;color:#e8e4d8;padding:7px 11px;border-radius:7px;font-size:13px}
+/* Table */
+.tscroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{padding:9px 11px;text-align:left;color:#C9A227;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;border-bottom:1px solid #2a1f0a;background:#120e05;white-space:nowrap}
+td{padding:8px 11px;border-bottom:1px solid #1a1508}
+tr:hover td{background:#1c1608}
+td.num{text-align:center;color:#555;font-size:12px}
+td.ctr{text-align:center}
+td.bold{font-weight:500}
+td.dim{color:#777;font-size:12px}
+/* mini bar */
+.mini-bar-wrap{display:flex;align-items:center;gap:7px}
+.mini-bar{height:6px;background:#C9A227;border-radius:3px;min-width:3px}
+/* note */
+.note{background:#120f00;border:1px solid #3a2800;border-radius:7px;padding:11px 14px;font-size:12px;color:#777;margin-bottom:20px;line-height:1.7}
+.note b{color:#C9A227}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>☕ DASHBOARD COFFIY — DISTRIBUSI PENJUALAN</h1>
+  <p>Data order Jan–Jul 2026 &nbsp;·&nbsp; 4,004 order &nbsp;·&nbsp; Status Completed</p>
+</div>
+<div class="wrap">
+
+<div class="note">
+  <b>Dua tipe order Coffiy:</b>
+  &nbsp;Standalone = beli Coffiy langsung (3,842 order) &nbsp;|&nbsp;
+  PWP = bonus gratis bundling Erojan (461 order)
+  &nbsp;·&nbsp; Tabel kota hanya menampilkan ≥ 10 order.
+</div>
+
+<div class="cards">
+  <div class="card"><div class="v">4,004</div><div class="l">Total Order</div><div class="s">Jan–Jul 2026</div></div>
+  <div class="card"><div class="v">3,842</div><div class="l">Standalone Sales</div><div class="s">Beli Coffiy langsung</div></div>
+  <div class="card"><div class="v">461</div><div class="l">PWP / Bonus</div><div class="s">Bundling Erojan</div></div>
+  <div class="card"><div class="v">72</div><div class="l">Kota ≥10 Order</div><div class="s">Prioritas iklan</div></div>
+  <div class="card"><div class="v">33</div><div class="l">Provinsi</div><div class="s">Dari 38 total</div></div>
+</div>
+
+<div class="charts">
+  <div class="cbox"><h3>📍 Top 12 Provinsi</h3><div class="css-chart">
+    <div class="bar-row">
+      <div class="bar-label">DKI JAKARTA</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:100.0%"></div>
+        <span class="bar-val">376</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">JAWA BARAT</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:94.4%"></div>
+        <span class="bar-val">355</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">BALI</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:73.7%"></div>
+        <span class="bar-val">277</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">JAWA TIMUR</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:70.2%"></div>
+        <span class="bar-val">264</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">RIAU</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:69.4%"></div>
+        <span class="bar-val">261</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">KALIMANTAN TIMUR</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:61.2%"></div>
+        <span class="bar-val">230</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">JAWA TENGAH</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:46.8%"></div>
+        <span class="bar-val">176</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">KALIMANTAN BARAT</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:45.7%"></div>
+        <span class="bar-val">172</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">SUMATERA UTARA</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:44.9%"></div>
+        <span class="bar-val">169</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">SULAWESI SELATAN</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:42.0%"></div>
+        <span class="bar-val">158</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">SULAWESI UTARA</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:41.5%"></div>
+        <span class="bar-val">156</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">BANTEN</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:39.4%"></div>
+        <span class="bar-val">148</span>
+      </div>
+    </div></div></div>
+  <div class="cbox"><h3>🏙️ Top 12 Kota</h3><div class="css-chart">
+    <div class="bar-row">
+      <div class="bar-label">DENPASAR<span style="color:#555;font-size:11px;margin-left:4px">(BALI)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:100.0%;background:#a07010"></div>
+        <span class="bar-val">93</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">SURABAYA<span style="color:#555;font-size:11px;margin-left:4px">(JAWA)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:66.7%;background:#a07010"></div>
+        <span class="bar-val">62</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">BADUNG<span style="color:#555;font-size:11px;margin-left:4px">(BALI)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:62.4%;background:#a07010"></div>
+        <span class="bar-val">58</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">BEKASI<span style="color:#555;font-size:11px;margin-left:4px">(JAWA)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:58.1%;background:#a07010"></div>
+        <span class="bar-val">54</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">JAKARTA SELATAN<span style="color:#555;font-size:11px;margin-left:4px">(DKI)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:55.9%;background:#a07010"></div>
+        <span class="bar-val">52</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">BANDUNG<span style="color:#555;font-size:11px;margin-left:4px">(JAWA)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:53.8%;background:#a07010"></div>
+        <span class="bar-val">50</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">TANGERANG<span style="color:#555;font-size:11px;margin-left:4px">(BANTEN)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:51.6%;background:#a07010"></div>
+        <span class="bar-val">48</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">PEKANBARU<span style="color:#555;font-size:11px;margin-left:4px">(RIAU)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:48.4%;background:#a07010"></div>
+        <span class="bar-val">45</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">MANADO<span style="color:#555;font-size:11px;margin-left:4px">(SULAWESI)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:46.2%;background:#a07010"></div>
+        <span class="bar-val">43</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">MEDAN<span style="color:#555;font-size:11px;margin-left:4px">(SUMATERA)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:46.2%;background:#a07010"></div>
+        <span class="bar-val">43</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">JAKARTA BARAT<span style="color:#555;font-size:11px;margin-left:4px">(DKI)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:45.2%;background:#a07010"></div>
+        <span class="bar-val">42</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">BOGOR<span style="color:#555;font-size:11px;margin-left:4px">(JAWA)</span></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:45.2%;background:#a07010"></div>
+        <span class="bar-val">42</span>
+      </div>
+    </div></div></div>
+</div>
+
+<div class="sec">
+  <h3>📊 Detail Per Provinsi <span class="badge">33 provinsi</span></h3>
+  <div class="tscroll">
+  <table>
+    <thead><tr>
+      <th>#</th><th>Provinsi</th><th>Order</th>
+      <th>Unit Standalone</th><th>Unit PWP</th><th>%</th>
+    </tr></thead>
+    <tbody><tr>
+      <td class="num">1</td>
+      <td class="bold">DKI JAKARTA</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:100%"></div>
+          <span>376</span>
+        </div>
+      </td>
+      <td class="ctr">359</td>
+      <td class="ctr">53</td>
+      <td class="ctr dim">9.4%</td>
+    </tr><tr>
+      <td class="num">2</td>
+      <td class="bold">JAWA BARAT</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:94%"></div>
+          <span>355</span>
+        </div>
+      </td>
+      <td class="ctr">333</td>
+      <td class="ctr">34</td>
+      <td class="ctr dim">8.9%</td>
+    </tr><tr>
+      <td class="num">3</td>
+      <td class="bold">BALI</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:74%"></div>
+          <span>277</span>
+        </div>
+      </td>
+      <td class="ctr">252</td>
+      <td class="ctr">38</td>
+      <td class="ctr dim">6.9%</td>
+    </tr><tr>
+      <td class="num">4</td>
+      <td class="bold">JAWA TIMUR</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:70%"></div>
+          <span>264</span>
+        </div>
+      </td>
+      <td class="ctr">249</td>
+      <td class="ctr">44</td>
+      <td class="ctr dim">6.6%</td>
+    </tr><tr>
+      <td class="num">5</td>
+      <td class="bold">RIAU</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:69%"></div>
+          <span>261</span>
+        </div>
+      </td>
+      <td class="ctr">249</td>
+      <td class="ctr">38</td>
+      <td class="ctr dim">6.5%</td>
+    </tr><tr>
+      <td class="num">6</td>
+      <td class="bold">KALIMANTAN TIMUR</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:61%"></div>
+          <span>230</span>
+        </div>
+      </td>
+      <td class="ctr">218</td>
+      <td class="ctr">28</td>
+      <td class="ctr dim">5.7%</td>
+    </tr><tr>
+      <td class="num">7</td>
+      <td class="bold">JAWA TENGAH</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:47%"></div>
+          <span>176</span>
+        </div>
+      </td>
+      <td class="ctr">164</td>
+      <td class="ctr">22</td>
+      <td class="ctr dim">4.4%</td>
+    </tr><tr>
+      <td class="num">8</td>
+      <td class="bold">KALIMANTAN BARAT</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:46%"></div>
+          <span>172</span>
+        </div>
+      </td>
+      <td class="ctr">169</td>
+      <td class="ctr">16</td>
+      <td class="ctr dim">4.3%</td>
+    </tr><tr>
+      <td class="num">9</td>
+      <td class="bold">SUMATERA UTARA</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:45%"></div>
+          <span>169</span>
+        </div>
+      </td>
+      <td class="ctr">157</td>
+      <td class="ctr">26</td>
+      <td class="ctr dim">4.2%</td>
+    </tr><tr>
+      <td class="num">10</td>
+      <td class="bold">SULAWESI SELATAN</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:42%"></div>
+          <span>158</span>
+        </div>
+      </td>
+      <td class="ctr">153</td>
+      <td class="ctr">14</td>
+      <td class="ctr dim">3.9%</td>
+    </tr><tr>
+      <td class="num">11</td>
+      <td class="bold">SULAWESI UTARA</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:41%"></div>
+          <span>156</span>
+        </div>
+      </td>
+      <td class="ctr">165</td>
+      <td class="ctr">10</td>
+      <td class="ctr dim">3.9%</td>
+    </tr><tr>
+      <td class="num">12</td>
+      <td class="bold">BANTEN</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:39%"></div>
+          <span>148</span>
+        </div>
+      </td>
+      <td class="ctr">142</td>
+      <td class="ctr">14</td>
+      <td class="ctr dim">3.7%</td>
+    </tr><tr>
+      <td class="num">13</td>
+      <td class="bold">NUSA TENGGARA TIMUR</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:34%"></div>
+          <span>126</span>
+        </div>
+      </td>
+      <td class="ctr">129</td>
+      <td class="ctr">5</td>
+      <td class="ctr dim">3.1%</td>
+    </tr><tr>
+      <td class="num">14</td>
+      <td class="bold">SUMATERA SELATAN</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:30%"></div>
+          <span>112</span>
+        </div>
+      </td>
+      <td class="ctr">99</td>
+      <td class="ctr">18</td>
+      <td class="ctr dim">2.8%</td>
+    </tr><tr>
+      <td class="num">15</td>
+      <td class="bold">KALIMANTAN TENGAH</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:29%"></div>
+          <span>110</span>
+        </div>
+      </td>
+      <td class="ctr">106</td>
+      <td class="ctr">11</td>
+      <td class="ctr dim">2.7%</td>
+    </tr><tr>
+      <td class="num">16</td>
+      <td class="bold">SULAWESI TENGAH</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:25%"></div>
+          <span>94</span>
+        </div>
+      </td>
+      <td class="ctr">89</td>
+      <td class="ctr">12</td>
+      <td class="ctr dim">2.3%</td>
+    </tr><tr>
+      <td class="num">17</td>
+      <td class="bold">NUSA TENGGARA BARAT</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:25%"></div>
+          <span>93</span>
+        </div>
+      </td>
+      <td class="ctr">84</td>
+      <td class="ctr">16</td>
+      <td class="ctr dim">2.3%</td>
+    </tr><tr>
+      <td class="num">18</td>
+      <td class="bold">SULAWESI TENGGARA</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:23%"></div>
+          <span>85</span>
+        </div>
+      </td>
+      <td class="ctr">83</td>
+      <td class="ctr">7</td>
+      <td class="ctr dim">2.1%</td>
+    </tr><tr>
+      <td class="num">19</td>
+      <td class="bold">LAMPUNG</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:21%"></div>
+          <span>78</span>
+        </div>
+      </td>
+      <td class="ctr">73</td>
+      <td class="ctr">10</td>
+      <td class="ctr dim">1.9%</td>
+    </tr><tr>
+      <td class="num">20</td>
+      <td class="bold">KALIMANTAN SELATAN</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:20%"></div>
+          <span>75</span>
+        </div>
+      </td>
+      <td class="ctr">73</td>
+      <td class="ctr">9</td>
+      <td class="ctr dim">1.9%</td>
+    </tr><tr>
+      <td class="num">21</td>
+      <td class="bold">PAPUA</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:18%"></div>
+          <span>69</span>
+        </div>
+      </td>
+      <td class="ctr">71</td>
+      <td class="ctr">7</td>
+      <td class="ctr dim">1.7%</td>
+    </tr><tr>
+      <td class="num">22</td>
+      <td class="bold">MALUKU UTARA</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:15%"></div>
+          <span>58</span>
+        </div>
+      </td>
+      <td class="ctr">61</td>
+      <td class="ctr">4</td>
+      <td class="ctr dim">1.4%</td>
+    </tr><tr>
+      <td class="num">23</td>
+      <td class="bold">SUMATERA BARAT</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:14%"></div>
+          <span>54</span>
+        </div>
+      </td>
+      <td class="ctr">54</td>
+      <td class="ctr">3</td>
+      <td class="ctr dim">1.3%</td>
+    </tr><tr>
+      <td class="num">24</td>
+      <td class="bold">ACEH</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:12%"></div>
+          <span>44</span>
+        </div>
+      </td>
+      <td class="ctr">46</td>
+      <td class="ctr">1</td>
+      <td class="ctr dim">1.1%</td>
+    </tr><tr>
+      <td class="num">25</td>
+      <td class="bold">PAPUA BARAT</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:11%"></div>
+          <span>41</span>
+        </div>
+      </td>
+      <td class="ctr">42</td>
+      <td class="ctr">3</td>
+      <td class="ctr dim">1.0%</td>
+    </tr><tr>
+      <td class="num">26</td>
+      <td class="bold">JAMBI</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:10%"></div>
+          <span>37</span>
+        </div>
+      </td>
+      <td class="ctr">36</td>
+      <td class="ctr">1</td>
+      <td class="ctr dim">0.9%</td>
+    </tr><tr>
+      <td class="num">27</td>
+      <td class="bold">GORONTALO</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:9%"></div>
+          <span>34</span>
+        </div>
+      </td>
+      <td class="ctr">36</td>
+      <td class="ctr">1</td>
+      <td class="ctr dim">0.8%</td>
+    </tr><tr>
+      <td class="num">28</td>
+      <td class="bold">KALIMANTAN UTARA</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:8%"></div>
+          <span>31</span>
+        </div>
+      </td>
+      <td class="ctr">29</td>
+      <td class="ctr">6</td>
+      <td class="ctr dim">0.8%</td>
+    </tr><tr>
+      <td class="num">29</td>
+      <td class="bold">DI YOGYAKARTA</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:7%"></div>
+          <span>27</span>
+        </div>
+      </td>
+      <td class="ctr">26</td>
+      <td class="ctr">5</td>
+      <td class="ctr dim">0.7%</td>
+    </tr><tr>
+      <td class="num">30</td>
+      <td class="bold">MALUKU</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:7%"></div>
+          <span>27</span>
+        </div>
+      </td>
+      <td class="ctr">28</td>
+      <td class="ctr">2</td>
+      <td class="ctr dim">0.7%</td>
+    </tr><tr>
+      <td class="num">31</td>
+      <td class="bold">BENGKULU</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:7%"></div>
+          <span>25</span>
+        </div>
+      </td>
+      <td class="ctr">25</td>
+      <td class="ctr">1</td>
+      <td class="ctr dim">0.6%</td>
+    </tr><tr>
+      <td class="num">32</td>
+      <td class="bold">SULAWESI BARAT</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:6%"></div>
+          <span>22</span>
+        </div>
+      </td>
+      <td class="ctr">23</td>
+      <td class="ctr">1</td>
+      <td class="ctr dim">0.5%</td>
+    </tr><tr>
+      <td class="num">33</td>
+      <td class="bold">BANGKA BELITUNG</td>
+      <td>
+        <div class="mini-bar-wrap">
+          <div class="mini-bar" style="width:5%"></div>
+          <span>20</span>
+        </div>
+      </td>
+      <td class="ctr">19</td>
+      <td class="ctr">1</td>
+      <td class="ctr dim">0.5%</td>
+    </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div class="sec">
+  <h3>🗺️ Detail Per Kota <span class="badge">72 kota · ≥10 order</span></h3>
+  <div class="fb">
+    <input type="text" id="sq" placeholder="🔍 Cari kota..." oninput="filt()">
+    <select id="sp" onchange="filt()">
+      <option value="">Semua Provinsi</option>
+      <option value="DKI JAKARTA">DKI JAKARTA</option><option value="JAWA BARAT">JAWA BARAT</option><option value="BALI">BALI</option><option value="JAWA TIMUR">JAWA TIMUR</option><option value="RIAU">RIAU</option><option value="KALIMANTAN TIMUR">KALIMANTAN TIMUR</option><option value="JAWA TENGAH">JAWA TENGAH</option><option value="KALIMANTAN BARAT">KALIMANTAN BARAT</option><option value="SUMATERA UTARA">SUMATERA UTARA</option><option value="SULAWESI SELATAN">SULAWESI SELATAN</option><option value="SULAWESI UTARA">SULAWESI UTARA</option><option value="BANTEN">BANTEN</option><option value="NUSA TENGGARA TIMUR">NUSA TENGGARA TIMUR</option><option value="SUMATERA SELATAN">SUMATERA SELATAN</option><option value="KALIMANTAN TENGAH">KALIMANTAN TENGAH</option><option value="SULAWESI TENGAH">SULAWESI TENGAH</option><option value="NUSA TENGGARA BARAT">NUSA TENGGARA BARAT</option><option value="SULAWESI TENGGARA">SULAWESI TENGGARA</option><option value="LAMPUNG">LAMPUNG</option><option value="KALIMANTAN SELATAN">KALIMANTAN SELATAN</option><option value="PAPUA">PAPUA</option><option value="MALUKU UTARA">MALUKU UTARA</option><option value="SUMATERA BARAT">SUMATERA BARAT</option><option value="ACEH">ACEH</option><option value="PAPUA BARAT">PAPUA BARAT</option><option value="JAMBI">JAMBI</option><option value="GORONTALO">GORONTALO</option><option value="KALIMANTAN UTARA">KALIMANTAN UTARA</option><option value="DI YOGYAKARTA">DI YOGYAKARTA</option><option value="MALUKU">MALUKU</option><option value="BENGKULU">BENGKULU</option><option value="SULAWESI BARAT">SULAWESI BARAT</option><option value="BANGKA BELITUNG">BANGKA BELITUNG</option>
+    </select>
+  </div>
+  <div class="tscroll">
+  <table>
+    <thead><tr>
+      <th>#</th><th>Kota / Kabupaten</th><th>Provinsi</th>
+      <th>Order</th><th>Unit Standalone</th><th>Unit PWP</th>
+    </tr></thead>
+    <tbody id="cb"><tr data-prov="BALI">
+      <td class="num">1</td>
+      <td class="bold">DENPASAR</td>
+      <td class="dim">BALI</td>
+      <td class="ctr bold">93</td>
+      <td class="ctr">76</td>
+      <td class="ctr dim">18</td>
+    </tr><tr data-prov="JAWA TIMUR">
+      <td class="num">2</td>
+      <td class="bold">SURABAYA</td>
+      <td class="dim">JAWA TIMUR</td>
+      <td class="ctr bold">62</td>
+      <td class="ctr">59</td>
+      <td class="ctr dim">17</td>
+    </tr><tr data-prov="BALI">
+      <td class="num">3</td>
+      <td class="bold">BADUNG</td>
+      <td class="dim">BALI</td>
+      <td class="ctr bold">58</td>
+      <td class="ctr">54</td>
+      <td class="ctr dim">9</td>
+    </tr><tr data-prov="JAWA BARAT">
+      <td class="num">4</td>
+      <td class="bold">BEKASI</td>
+      <td class="dim">JAWA BARAT</td>
+      <td class="ctr bold">54</td>
+      <td class="ctr">55</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="DKI JAKARTA">
+      <td class="num">5</td>
+      <td class="bold">JAKARTA SELATAN</td>
+      <td class="dim">DKI JAKARTA</td>
+      <td class="ctr bold">52</td>
+      <td class="ctr">50</td>
+      <td class="ctr dim">9</td>
+    </tr><tr data-prov="JAWA BARAT">
+      <td class="num">6</td>
+      <td class="bold">BANDUNG</td>
+      <td class="dim">JAWA BARAT</td>
+      <td class="ctr bold">50</td>
+      <td class="ctr">42</td>
+      <td class="ctr dim">9</td>
+    </tr><tr data-prov="BANTEN">
+      <td class="num">7</td>
+      <td class="bold">TANGERANG</td>
+      <td class="dim">BANTEN</td>
+      <td class="ctr bold">48</td>
+      <td class="ctr">40</td>
+      <td class="ctr dim">8</td>
+    </tr><tr data-prov="RIAU">
+      <td class="num">8</td>
+      <td class="bold">PEKANBARU</td>
+      <td class="dim">RIAU</td>
+      <td class="ctr bold">45</td>
+      <td class="ctr">42</td>
+      <td class="ctr dim">10</td>
+    </tr><tr data-prov="SULAWESI UTARA">
+      <td class="num">9</td>
+      <td class="bold">MANADO</td>
+      <td class="dim">SULAWESI UTARA</td>
+      <td class="ctr bold">43</td>
+      <td class="ctr">49</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="SUMATERA UTARA">
+      <td class="num">10</td>
+      <td class="bold">MEDAN</td>
+      <td class="dim">SUMATERA UTARA</td>
+      <td class="ctr bold">43</td>
+      <td class="ctr">42</td>
+      <td class="ctr dim">6</td>
+    </tr><tr data-prov="DKI JAKARTA">
+      <td class="num">11</td>
+      <td class="bold">JAKARTA BARAT</td>
+      <td class="dim">DKI JAKARTA</td>
+      <td class="ctr bold">42</td>
+      <td class="ctr">38</td>
+      <td class="ctr dim">6</td>
+    </tr><tr data-prov="JAWA BARAT">
+      <td class="num">12</td>
+      <td class="bold">BOGOR</td>
+      <td class="dim">JAWA BARAT</td>
+      <td class="ctr bold">42</td>
+      <td class="ctr">41</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="BANTEN">
+      <td class="num">13</td>
+      <td class="bold">TANGERANG SELATAN</td>
+      <td class="dim">BANTEN</td>
+      <td class="ctr bold">39</td>
+      <td class="ctr">42</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="SULAWESI SELATAN">
+      <td class="num">14</td>
+      <td class="bold">MAKASSAR</td>
+      <td class="dim">SULAWESI SELATAN</td>
+      <td class="ctr bold">39</td>
+      <td class="ctr">34</td>
+      <td class="ctr dim">5</td>
+    </tr><tr data-prov="SUMATERA SELATAN">
+      <td class="num">15</td>
+      <td class="bold">PALEMBANG</td>
+      <td class="dim">SUMATERA SELATAN</td>
+      <td class="ctr bold">36</td>
+      <td class="ctr">29</td>
+      <td class="ctr dim">8</td>
+    </tr><tr data-prov="KALIMANTAN TIMUR">
+      <td class="num">16</td>
+      <td class="bold">SAMARINDA</td>
+      <td class="dim">KALIMANTAN TIMUR</td>
+      <td class="ctr bold">36</td>
+      <td class="ctr">30</td>
+      <td class="ctr dim">9</td>
+    </tr><tr data-prov="NUSA TENGGARA TIMUR">
+      <td class="num">17</td>
+      <td class="bold">KUPANG</td>
+      <td class="dim">NUSA TENGGARA TIMUR</td>
+      <td class="ctr bold">34</td>
+      <td class="ctr">36</td>
+      <td class="ctr dim">0</td>
+    </tr><tr data-prov="BALI">
+      <td class="num">18</td>
+      <td class="bold">GIANYAR</td>
+      <td class="dim">BALI</td>
+      <td class="ctr bold">30</td>
+      <td class="ctr">25</td>
+      <td class="ctr dim">5</td>
+    </tr><tr data-prov="DKI JAKARTA">
+      <td class="num">19</td>
+      <td class="bold">JAKARTA TIMUR</td>
+      <td class="dim">DKI JAKARTA</td>
+      <td class="ctr bold">30</td>
+      <td class="ctr">31</td>
+      <td class="ctr dim">5</td>
+    </tr><tr data-prov="DKI JAKARTA">
+      <td class="num">20</td>
+      <td class="bold">JAKARTA UTARA</td>
+      <td class="dim">DKI JAKARTA</td>
+      <td class="ctr bold">30</td>
+      <td class="ctr">28</td>
+      <td class="ctr dim">5</td>
+    </tr><tr data-prov="KALIMANTAN TIMUR">
+      <td class="num">21</td>
+      <td class="bold">BALIKPAPAN</td>
+      <td class="dim">KALIMANTAN TIMUR</td>
+      <td class="ctr bold">29</td>
+      <td class="ctr">25</td>
+      <td class="ctr dim">7</td>
+    </tr><tr data-prov="KALIMANTAN TIMUR">
+      <td class="num">22</td>
+      <td class="bold">KUTAI TIMUR</td>
+      <td class="dim">KALIMANTAN TIMUR</td>
+      <td class="ctr bold">28</td>
+      <td class="ctr">32</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="KALIMANTAN TIMUR">
+      <td class="num">23</td>
+      <td class="bold">JEMBRANA</td>
+      <td class="dim">KALIMANTAN TIMUR</td>
+      <td class="ctr bold">25</td>
+      <td class="ctr">25</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="BALI">
+      <td class="num">24</td>
+      <td class="bold">BULELENG</td>
+      <td class="dim">BALI</td>
+      <td class="ctr bold">25</td>
+      <td class="ctr">27</td>
+      <td class="ctr dim">0</td>
+    </tr><tr data-prov="JAWA BARAT">
+      <td class="num">25</td>
+      <td class="bold">DEPOK</td>
+      <td class="dim">JAWA BARAT</td>
+      <td class="ctr bold">25</td>
+      <td class="ctr">22</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="RIAU">
+      <td class="num">26</td>
+      <td class="bold">KAMPAR</td>
+      <td class="dim">RIAU</td>
+      <td class="ctr bold">23</td>
+      <td class="ctr">28</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="KALIMANTAN BARAT">
+      <td class="num">27</td>
+      <td class="bold">KETAPANG</td>
+      <td class="dim">KALIMANTAN BARAT</td>
+      <td class="ctr bold">23</td>
+      <td class="ctr">24</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="RIAU">
+      <td class="num">28</td>
+      <td class="bold">BATAM</td>
+      <td class="dim">RIAU</td>
+      <td class="ctr bold">23</td>
+      <td class="ctr">22</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="BALI">
+      <td class="num">29</td>
+      <td class="bold">KARANGASEM</td>
+      <td class="dim">BALI</td>
+      <td class="ctr bold">19</td>
+      <td class="ctr">18</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="JAWA TENGAH">
+      <td class="num">30</td>
+      <td class="bold">SEMARANG</td>
+      <td class="dim">JAWA TENGAH</td>
+      <td class="ctr bold">19</td>
+      <td class="ctr">18</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="JAWA TIMUR">
+      <td class="num">31</td>
+      <td class="bold">SIDOARJO</td>
+      <td class="dim">JAWA TIMUR</td>
+      <td class="ctr bold">18</td>
+      <td class="ctr">16</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="DKI JAKARTA">
+      <td class="num">32</td>
+      <td class="bold">KARANGASEM</td>
+      <td class="dim">DKI JAKARTA</td>
+      <td class="ctr bold">17</td>
+      <td class="ctr">19</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="KALIMANTAN BARAT">
+      <td class="num">33</td>
+      <td class="bold">SANGGAU</td>
+      <td class="dim">KALIMANTAN BARAT</td>
+      <td class="ctr bold">17</td>
+      <td class="ctr">15</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="MALUKU UTARA">
+      <td class="num">34</td>
+      <td class="bold">HALMAHERA UTARA</td>
+      <td class="dim">MALUKU UTARA</td>
+      <td class="ctr bold">17</td>
+      <td class="ctr">17</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="KALIMANTAN TIMUR">
+      <td class="num">35</td>
+      <td class="bold">BERAU</td>
+      <td class="dim">KALIMANTAN TIMUR</td>
+      <td class="ctr bold">16</td>
+      <td class="ctr">19</td>
+      <td class="ctr dim">0</td>
+    </tr><tr data-prov="DKI JAKARTA">
+      <td class="num">36</td>
+      <td class="bold">JAKARTA PUSAT</td>
+      <td class="dim">DKI JAKARTA</td>
+      <td class="ctr bold">16</td>
+      <td class="ctr">14</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="JAWA BARAT">
+      <td class="num">37</td>
+      <td class="bold">KARAWANG</td>
+      <td class="dim">JAWA BARAT</td>
+      <td class="ctr bold">16</td>
+      <td class="ctr">15</td>
+      <td class="ctr dim">4</td>
+    </tr><tr data-prov="NUSA TENGGARA BARAT">
+      <td class="num">38</td>
+      <td class="bold">BIMA</td>
+      <td class="dim">NUSA TENGGARA BARAT</td>
+      <td class="ctr bold">16</td>
+      <td class="ctr">15</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="SULAWESI UTARA">
+      <td class="num">39</td>
+      <td class="bold">MINAHASA</td>
+      <td class="dim">SULAWESI UTARA</td>
+      <td class="ctr bold">15</td>
+      <td class="ctr">15</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="SULAWESI TENGAH">
+      <td class="num">40</td>
+      <td class="bold">PALU</td>
+      <td class="dim">SULAWESI TENGAH</td>
+      <td class="ctr bold">15</td>
+      <td class="ctr">11</td>
+      <td class="ctr dim">4</td>
+    </tr><tr data-prov="JAWA TIMUR">
+      <td class="num">41</td>
+      <td class="bold">MALANG</td>
+      <td class="dim">JAWA TIMUR</td>
+      <td class="ctr bold">15</td>
+      <td class="ctr">13</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="BALI">
+      <td class="num">42</td>
+      <td class="bold">TABANAN</td>
+      <td class="dim">BALI</td>
+      <td class="ctr bold">15</td>
+      <td class="ctr">16</td>
+      <td class="ctr dim">0</td>
+    </tr><tr data-prov="JAWA TIMUR">
+      <td class="num">43</td>
+      <td class="bold">GRESIK</td>
+      <td class="dim">JAWA TIMUR</td>
+      <td class="ctr bold">15</td>
+      <td class="ctr">14</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="BALI">
+      <td class="num">44</td>
+      <td class="bold">BANGLI</td>
+      <td class="dim">BALI</td>
+      <td class="ctr bold">15</td>
+      <td class="ctr">15</td>
+      <td class="ctr dim">0</td>
+    </tr><tr data-prov="PAPUA BARAT">
+      <td class="num">45</td>
+      <td class="bold">MANOKWARI</td>
+      <td class="dim">PAPUA BARAT</td>
+      <td class="ctr bold">14</td>
+      <td class="ctr">16</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="JAWA BARAT">
+      <td class="num">46</td>
+      <td class="bold">BANDUNG BARAT</td>
+      <td class="dim">JAWA BARAT</td>
+      <td class="ctr bold">14</td>
+      <td class="ctr">14</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="NUSA TENGGARA BARAT">
+      <td class="num">47</td>
+      <td class="bold">SUMBAWA BARAT</td>
+      <td class="dim">NUSA TENGGARA BARAT</td>
+      <td class="ctr bold">14</td>
+      <td class="ctr">12</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="SULAWESI TENGAH">
+      <td class="num">48</td>
+      <td class="bold">BANGGAI</td>
+      <td class="dim">SULAWESI TENGAH</td>
+      <td class="ctr bold">14</td>
+      <td class="ctr">12</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="PAPUA BARAT">
+      <td class="num">49</td>
+      <td class="bold">SORONG</td>
+      <td class="dim">PAPUA BARAT</td>
+      <td class="ctr bold">13</td>
+      <td class="ctr">12</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="KALIMANTAN BARAT">
+      <td class="num">50</td>
+      <td class="bold">PONTIANAK</td>
+      <td class="dim">KALIMANTAN BARAT</td>
+      <td class="ctr bold">13</td>
+      <td class="ctr">13</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="SULAWESI TENGGARA">
+      <td class="num">51</td>
+      <td class="bold">KENDARI</td>
+      <td class="dim">SULAWESI TENGGARA</td>
+      <td class="ctr bold">13</td>
+      <td class="ctr">14</td>
+      <td class="ctr dim">0</td>
+    </tr><tr data-prov="RIAU">
+      <td class="num">52</td>
+      <td class="bold">BENGKALIS</td>
+      <td class="dim">RIAU</td>
+      <td class="ctr bold">12</td>
+      <td class="ctr">11</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="DI YOGYAKARTA">
+      <td class="num">53</td>
+      <td class="bold">SLEMAN</td>
+      <td class="dim">DI YOGYAKARTA</td>
+      <td class="ctr bold">12</td>
+      <td class="ctr">15</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="MALUKU UTARA">
+      <td class="num">54</td>
+      <td class="bold">HALMAHERA TENGAH</td>
+      <td class="dim">MALUKU UTARA</td>
+      <td class="ctr bold">12</td>
+      <td class="ctr">12</td>
+      <td class="ctr dim">0</td>
+    </tr><tr data-prov="KALIMANTAN SELATAN">
+      <td class="num">55</td>
+      <td class="bold">BANJARMASIN</td>
+      <td class="dim">KALIMANTAN SELATAN</td>
+      <td class="ctr bold">12</td>
+      <td class="ctr">9</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="LAMPUNG">
+      <td class="num">56</td>
+      <td class="bold">BANDAR LAMPUNG</td>
+      <td class="dim">LAMPUNG</td>
+      <td class="ctr bold">12</td>
+      <td class="ctr">10</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="RIAU">
+      <td class="num">57</td>
+      <td class="bold">SIAK</td>
+      <td class="dim">RIAU</td>
+      <td class="ctr bold">11</td>
+      <td class="ctr">10</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="KALIMANTAN BARAT">
+      <td class="num">58</td>
+      <td class="bold">BENGKAYANG</td>
+      <td class="dim">KALIMANTAN BARAT</td>
+      <td class="ctr bold">11</td>
+      <td class="ctr">10</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="RIAU">
+      <td class="num">59</td>
+      <td class="bold">ROKAN HULU</td>
+      <td class="dim">RIAU</td>
+      <td class="ctr bold">11</td>
+      <td class="ctr">10</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="SULAWESI UTARA">
+      <td class="num">60</td>
+      <td class="bold">MINAHASA UTARA</td>
+      <td class="dim">SULAWESI UTARA</td>
+      <td class="ctr bold">11</td>
+      <td class="ctr">11</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="SULAWESI UTARA">
+      <td class="num">61</td>
+      <td class="bold">BITUNG</td>
+      <td class="dim">SULAWESI UTARA</td>
+      <td class="ctr bold">11</td>
+      <td class="ctr">13</td>
+      <td class="ctr dim">0</td>
+    </tr><tr data-prov="RIAU">
+      <td class="num">62</td>
+      <td class="bold">ROKAN HILIR</td>
+      <td class="dim">RIAU</td>
+      <td class="ctr bold">10</td>
+      <td class="ctr">7</td>
+      <td class="ctr dim">3</td>
+    </tr><tr data-prov="KALIMANTAN TENGAH">
+      <td class="num">63</td>
+      <td class="bold">GUNUNG MAS</td>
+      <td class="dim">KALIMANTAN TENGAH</td>
+      <td class="ctr bold">10</td>
+      <td class="ctr">10</td>
+      <td class="ctr dim">0</td>
+    </tr><tr data-prov="NUSA TENGGARA BARAT">
+      <td class="num">64</td>
+      <td class="bold">SUMBAWA</td>
+      <td class="dim">NUSA TENGGARA BARAT</td>
+      <td class="ctr bold">10</td>
+      <td class="ctr">9</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="RIAU">
+      <td class="num">65</td>
+      <td class="bold">PELALAWAN</td>
+      <td class="dim">RIAU</td>
+      <td class="ctr bold">10</td>
+      <td class="ctr">9</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="SULAWESI SELATAN">
+      <td class="num">66</td>
+      <td class="bold">GOWA</td>
+      <td class="dim">SULAWESI SELATAN</td>
+      <td class="ctr bold">10</td>
+      <td class="ctr">10</td>
+      <td class="ctr dim">2</td>
+    </tr><tr data-prov="KALIMANTAN TENGAH">
+      <td class="num">67</td>
+      <td class="bold">MURUNG RAYA</td>
+      <td class="dim">KALIMANTAN TENGAH</td>
+      <td class="ctr bold">10</td>
+      <td class="ctr">7</td>
+      <td class="ctr dim">4</td>
+    </tr><tr data-prov="KALIMANTAN SELATAN">
+      <td class="num">68</td>
+      <td class="bold">BANJAR</td>
+      <td class="dim">KALIMANTAN SELATAN</td>
+      <td class="ctr bold">10</td>
+      <td class="ctr">9</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="KALIMANTAN BARAT">
+      <td class="num">69</td>
+      <td class="bold">SEKADAU</td>
+      <td class="dim">KALIMANTAN BARAT</td>
+      <td class="ctr bold">10</td>
+      <td class="ctr">10</td>
+      <td class="ctr dim">0</td>
+    </tr><tr data-prov="PAPUA">
+      <td class="num">70</td>
+      <td class="bold">JAYAPURA</td>
+      <td class="dim">PAPUA</td>
+      <td class="ctr bold">10</td>
+      <td class="ctr">11</td>
+      <td class="ctr dim">1</td>
+    </tr><tr data-prov="RIAU">
+      <td class="num">71</td>
+      <td class="bold">DUMAI</td>
+      <td class="dim">RIAU</td>
+      <td class="ctr bold">10</td>
+      <td class="ctr">10</td>
+      <td class="ctr dim">0</td>
+    </tr><tr data-prov="PAPUA">
+      <td class="num">72</td>
+      <td class="bold">NABIRE</td>
+      <td class="dim">PAPUA</td>
+      <td class="ctr bold">10</td>
+      <td class="ctr">8</td>
+      <td class="ctr dim">2</td>
+    </tr></tbody>
+  </table>
+  </div>
+</div>
+
+</div>
+<script>
+function filt(){
+  var q=document.getElementById('sq').value.toLowerCase();
+  var pv=document.getElementById('sp').value;
+  document.querySelectorAll('#cb tr').forEach(function(tr){
+    var ok=(!q||tr.textContent.toLowerCase().includes(q))&&(!pv||tr.getAttribute('data-prov')===pv);
+    tr.style.display=ok?'':'none';
+  });
+}
+</script>
+</body></html>
