@@ -14,9 +14,9 @@ import json, os, re, sys, urllib.request, urllib.parse
 from datetime import datetime, timedelta
 
 AD_ACCOUNT = "1630362674392137"          # diisi otomatis per akun oleh loop (lihat __main__)
-ACCOUNTS = [                             # daftar akun yg tampil di dashboard — tambah/ubah di sini
-    {"id": "1630362674392137", "name": "Novia"},
+ACCOUNTS = [                             # daftar akun yg tampil di dashboard — yg PERTAMA = default saat dibuka
     {"id": "1475202733411240", "name": "SVO ZR-11"},
+    {"id": "1630362674392137", "name": "Novia"},
 ]
 PIXEL      = "875398195344375"           # Pixel "Produk Novia Kewanitaan" (tidak dipakai lagi)
 API_VER    = "v21.0"
