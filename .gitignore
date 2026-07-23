@@ -6,4 +6,4 @@ __pycache__/
 *.pyc
 .DS_Store
 
-.heavy_cache.json
+.heavy_cache*.json

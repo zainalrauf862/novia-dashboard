@@ -13,18 +13,23 @@ Token disimpan di token.txt (terpisah), TIDAK ditulis ke file HTML.
 import json, os, re, sys, urllib.request, urllib.parse
 from datetime import datetime, timedelta
 
-AD_ACCOUNT = "1630362674392137"          # akun Novia
-PIXEL      = "875398195344375"           # Pixel "Produk Novia Kewanitaan"
+AD_ACCOUNT = "1630362674392137"          # diisi otomatis per akun oleh loop (lihat __main__)
+ACCOUNTS = [                             # daftar akun yg tampil di dashboard — tambah/ubah di sini
+    {"id": "1630362674392137", "name": "Novia"},
+    {"id": "1475202733411240", "name": "SVO ZR-11"},
+]
+PIXEL      = "875398195344375"           # Pixel "Produk Novia Kewanitaan" (tidak dipakai lagi)
 API_VER    = "v21.0"
 BASE       = f"https://graph.facebook.com/{API_VER}"
 HERE       = os.path.dirname(os.path.abspath(__file__))
 HTML_FILE  = os.path.join(HERE, "novia-dashboard.html")
 DATA_JSON  = os.path.join(HERE, "data.json")
-HEAVY_FILE = os.path.join(HERE, ".heavy_cache.json")   # cache data berat (demografi/mingguan/wilayah)
+def heavy_path():   # cache data berat per-akun (demografi/mingguan/wilayah)
+    return os.path.join(HERE, f".heavy_cache_{AD_ACCOUNT}.json")
 
 def load_heavy():
     try:
-        return json.load(open(HEAVY_FILE, encoding="utf-8"))
+        return json.load(open(heavy_path(), encoding="utf-8"))
     except Exception:
         return {}
 
@@ -295,7 +300,7 @@ def build():
         cache = {k: d.get(k) for k in HKEYS}
         cache["_ts"] = now_ts
         try:
-            json.dump(cache, open(HEAVY_FILE, "w", encoding="utf-8"), ensure_ascii=False)
+            json.dump(cache, open(heavy_path(), "w", encoding="utf-8"), ensure_ascii=False)
         except Exception as e:
             print(f"  ⚠ gagal simpan cache berat ({e})")
     else:
@@ -348,12 +353,32 @@ def write(data):
     open(HTML_FILE, "w", encoding="utf-8").write(html)
 
 if __name__ == "__main__":
-    print("Menarik data akun Novia dari Meta Ads ...\n")
+    print("Menarik data Meta Ads (multi-akun) ...")
     try:
-        data = build()
-    except RuntimeError as e:
-        print("\n" + str(e))
+        prev = json.load(open(DATA_JSON, encoding="utf-8"))
+    except Exception:
+        prev = {}
+    prev_by_id = {a.get("id"): a for a in prev.get("accounts", [])}
+
+    accounts_out = []
+    for acc in ACCOUNTS:
+        AD_ACCOUNT = acc["id"]                      # global dipakai build()
+        print(f"\n=== Akun: {acc['name']} ({acc['id']}) ===")
+        try:
+            d = build()
+            d["id"] = acc["id"]; d["name"] = acc["name"]
+        except Exception as e:
+            print(f"  ⚠ gagal tarik {acc['name']} ({e}) — pakai data sebelumnya bila ada")
+            d = prev_by_id.get(acc["id"])
+            if not d:
+                continue
+        accounts_out.append(d)
+
+    if not accounts_out:
+        print("\n❌ Tidak ada data akun yang berhasil ditarik.")
         sys.exit(1)
-    write(data)
-    print(f"\n✅ Selesai! Data per {data['generated_at']}.")
-    print("   Buka (atau refresh) novia-dashboard.html untuk melihat angka terbaru.")
+
+    out = {"generated_at": accounts_out[0].get("generated_at", ""), "accounts": accounts_out}
+    write(out)
+    print(f"\n✅ Selesai! {len(accounts_out)} akun · data per {out['generated_at']}.")
+    print("   Buka (atau refresh) novia-dashboard.html.")
